@@ -19,6 +19,14 @@
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=6.0.1</generator>
+
+<image>
+	<url>https://raudioasia.github.io/raudioapp/wp-content/uploads/raudio-2020-v2-icon.png</url>
+	<title>raudio &#8211; Raudio</title>
+	<link>https://raudioasia.github.io/raudioapp</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
 	<item>
 		<title>Hello world!</title>
 		<link>https://raudioasia.github.io/raudioapp/uncategorized/1/hello-world/</link>
