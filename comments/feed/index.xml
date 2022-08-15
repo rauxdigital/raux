@@ -8,7 +8,7 @@
 <channel>
 	<title>
 	Comments for Raudio	</title>
-	<atom:link href="https://raudioasia.github.io/raudioapp/index.php/comments/feed/" rel="self" type="application/rss+xml" />
+	<atom:link href="https://raudioasia.github.io/raudioapp/comments/feed/" rel="self" type="application/rss+xml" />
 	<link>https://raudioasia.github.io/raudioapp</link>
 	<description>Just another WordPress site</description>
 	<lastBuildDate>Mon, 15 Aug 2022 12:23:54 +0000</lastBuildDate>
@@ -20,7 +20,7 @@
 	<item>
 		<title>
 		Comment on Hello world! by A WordPress Commenter		</title>
-		<link>https://raudioasia.github.io/raudioapp/index.php/2022/08/15/hello-world/#comment-1</link>
+		<link>https://raudioasia.github.io/raudioapp/uncategorized/1/hello-world/#comment-1</link>
 
 		<dc:creator><![CDATA[A WordPress Commenter]]></dc:creator>
 		<pubDate>Mon, 15 Aug 2022 12:23:54 +0000</pubDate>
