@@ -1,12 +1,12 @@
 @font-face {
   font-family: 'trx_addons_icons';
   font-display: swap;
-  src: url('https://raudioasia.github.io/raudioapp/wp-content/plugins/trx_addons/css/font-icons/font/trx_addons_icons.eot?59264814');
-  src: url('https://raudioasia.github.io/raudioapp/wp-content/plugins/trx_addons/css/font-icons/font/trx_addons_icons.eot?59264814#iefix') format('embedded-opentype'),
-       url('https://raudioasia.github.io/raudioapp/wp-content/plugins/trx_addons/css/font-icons/font/trx_addons_icons.woff2?59264814') format('woff2'),
-       url('https://raudioasia.github.io/raudioapp/wp-content/plugins/trx_addons/css/font-icons/font/trx_addons_icons.woff?59264814') format('woff'),
-       url('https://raudioasia.github.io/raudioapp/wp-content/plugins/trx_addons/css/font-icons/font/trx_addons_icons.ttf?59264814') format('truetype'),
-       url('https://raudioasia.github.io/raudioapp/wp-content/plugins/trx_addons/css/font-icons/font/trx_addons_icons.svg?59264814#trx_addons_icons') format('svg');
+  src: url('https://app.raudio.cf/wp-content/plugins/trx_addons/css/font-icons/font/trx_addons_icons.eot?59264814');
+  src: url('https://app.raudio.cf/wp-content/plugins/trx_addons/css/font-icons/font/trx_addons_icons.eot?59264814#iefix') format('embedded-opentype'),
+       url('https://app.raudio.cf/wp-content/plugins/trx_addons/css/font-icons/font/trx_addons_icons.woff2?59264814') format('woff2'),
+       url('https://app.raudio.cf/wp-content/plugins/trx_addons/css/font-icons/font/trx_addons_icons.woff?59264814') format('woff'),
+       url('https://app.raudio.cf/wp-content/plugins/trx_addons/css/font-icons/font/trx_addons_icons.ttf?59264814') format('truetype'),
+       url('https://app.raudio.cf/wp-content/plugins/trx_addons/css/font-icons/font/trx_addons_icons.svg?59264814#trx_addons_icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -17,7 +17,7 @@
   @font-face {
     font-family: 'trx_addons_icons';
     font-display: swap;
-    src: url('https://raudioasia.github.io/raudioapp/wp-content/plugins/trx_addons/css/font-icons/font/trx_addons_icons.svg?59264814#trx_addons_icons') format('svg');
+    src: url('https://app.raudio.cf/wp-content/plugins/trx_addons/css/font-icons/font/trx_addons_icons.svg?59264814#trx_addons_icons') format('svg');
   }
 }
 */
