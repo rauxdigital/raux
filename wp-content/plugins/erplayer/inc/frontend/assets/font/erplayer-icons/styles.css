@@ -1,0 +1,103 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "erplayer-icons";
+  src:url("https://app.raudio.cf/wp-content/plugins/erplayer/inc/frontend/assets/font/erplayer-icons/fonts/erplayer-icons.eot");
+  src:url("https://app.raudio.cf/wp-content/plugins/erplayer/inc/frontend/assets/font/erplayer-icons/fonts/erplayer-icons.eot#iefix") format("embedded-opentype"),
+    url("https://app.raudio.cf/wp-content/plugins/erplayer/inc/frontend/assets/font/erplayer-icons/fonts/erplayer-icons.woff") format("woff"),
+    url("https://app.raudio.cf/wp-content/plugins/erplayer/inc/frontend/assets/font/erplayer-icons/fonts/erplayer-icons.ttf") format("truetype"),
+    url("https://app.raudio.cf/wp-content/plugins/erplayer/inc/frontend/assets/font/erplayer-icons/fonts/erplayer-icons.svg#erplayer-icons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "erplayer-icons" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="erplayer-icon-"]:before,
+[class*=" erplayer-icon-"]:before {
+  font-family: "erplayer-icons" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.erplayer-icon-play:before {
+  content: "\61";
+}
+.erplayer-icon-to-end:before {
+  content: "\62";
+}
+.erplayer-icon-to-start:before {
+  content: "\63";
+}
+.erplayer-icon-volume:before {
+  content: "\64";
+}
+.erplayer-icon-right-open-mini:before {
+  content: "\65";
+}
+.erplayer-icon-left-open-mini:before {
+  content: "\66";
+}
+.erplayer-icon-list:before {
+  content: "\67";
+}
+.erplayer-icon-list-add:before {
+  content: "\68";
+}
+.erplayer-icon-menu:before {
+  content: "\69";
+}
+.erplayer-icon-pause:before {
+  content: "\6a";
+}
+.erplayer-icon-stop:before {
+  content: "\6b";
+}
+.erplayer-icon-info-circled:before {
+  content: "\66";
+}
+.erplayer-icon-ccw:before {
+  content: "\72";
+}
+.erplayer-icon-attention:before {
+  content: "\73";
+}
+.erplayer-icon-dot-3:before {
+  content: "\74";
+}
+.erplayer-icon-cancel:before {
+  content: "\75";
+}
+.erplayer-icon-help:before {
+  content: "\76";
+}
+.erplayer-icon-loop:before {
+  content: "\77";
+}
+.erplayer-icon-up-open:before {
+  content: "\78";
+}
+.erplayer-icon-hourglass:before {
+  content: "\79";
+}
+.erplayer-icon-lastfm:before {
+  content: "\7a";
+}
