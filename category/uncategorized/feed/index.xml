@@ -8,8 +8,8 @@
 	>
 
 <channel>
-	<title>raudio &#8211; Raudio</title>
-	<atom:link href="https://app.raudio.cf/author/raudio/feed/" rel="self" type="application/rss+xml" />
+	<title>Uncategorized &#8211; Raudio</title>
+	<atom:link href="https://app.raudio.cf/category/uncategorized/feed/" rel="self" type="application/rss+xml" />
 	<link>https://app.raudio.cf</link>
 	<description>iKast</description>
 	<lastBuildDate>Tue, 25 Oct 2022 10:58:28 +0000</lastBuildDate>
@@ -22,7 +22,7 @@
 
 <image>
 	<url>https://app.raudio.cf/wp-content/uploads/raudio-2020-v2-icon.png</url>
-	<title>raudio &#8211; Raudio</title>
+	<title>Uncategorized &#8211; Raudio</title>
 	<link>https://app.raudio.cf</link>
 	<width>32</width>
 	<height>32</height>

@@ -12,7 +12,7 @@
 	<atom:link href="https://app.raudio.cf/feed/" rel="self" type="application/rss+xml" />
 	<link>https://app.raudio.cf</link>
 	<description>iKast</description>
-	<lastBuildDate>Mon, 15 Aug 2022 12:23:54 +0000</lastBuildDate>
+	<lastBuildDate>Tue, 25 Oct 2022 10:58:28 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -33,7 +33,7 @@
 					<comments>https://app.raudio.cf/uncategorized/1/hello-world/#comments</comments>
 		
 		<dc:creator><![CDATA[raudio]]></dc:creator>
-		<pubDate>Mon, 15 Aug 2022 12:23:54 +0000</pubDate>
+		<pubDate>Tue, 25 Oct 2022 10:58:28 +0000</pubDate>
 				<category><![CDATA[Uncategorized]]></category>
 		<guid isPermaLink="false">https://app.raudio.cf/?p=1</guid>
 
