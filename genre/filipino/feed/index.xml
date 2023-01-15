@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Filipino &#8211; Raudio</title>
+	<atom:link href="https://raudioasia.github.io/raudioapp/genre/filipino/feed/" rel="self" type="application/rss+xml" />
+	<link>https://raudioasia.github.io/raudioapp</link>
+	<description>iKast</description>
+	<lastBuildDate>Sat, 14 Jan 2023 14:48:43 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.0.3</generator>
+
+<image>
+	<url>https://raudioasia.github.io/raudioapp/wp-content/uploads/raudio-2020-v2-icon.png</url>
+	<title>Filipino &#8211; Raudio</title>
+	<link>https://raudioasia.github.io/raudioapp</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title></title>
+		<link></link>
+		
+		<dc:creator><![CDATA[]]></dc:creator>
+		<pubDate></pubDate>
+				<guid isPermaLink="false"></guid>
+
+					<description><![CDATA[Search stations Select country Philippines Select genre 2000s80s90sAdult ContemporaryCebuanoCebuano HitsClassic HitsContemporary MORFilipinoHot ACiKast NewsInternationalIslamiciSportsLive RadioMusicNewsOPMPopRaudio OriginalsSportsTalkTop 40 Search Showing 1 - 3 of 3 stations Show : Items per page 5 10 15 20 30 50 Sort : A -Z Z -A Newest Oldest iSports XTRA Country: National, Philippines Genres : FilipinoSportsTalk NewsRadio Juan Country:... <a href="" class="read-more">[ View Station ]</a>]]></description>
+										<content:encoded><![CDATA[<p>iSports XTRA Country: National, Philippines Genres : FilipinoSportsTalk NewsRadio Juan Country: National, Philippines Genres : FilipinoiKast NewsNewsTalk Radyo Pilipinas Country: National, Philippines Genres : FilipinoLive RadioNewsTalk...</p>
+<p><a href="" rel="nofollow">Source</a></p>]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>
