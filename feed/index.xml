@@ -8,11 +8,11 @@
 	>
 
 <channel>
-	<title>Raudio</title>
+	<title>RAU</title>
 	<atom:link href="https://raudioasia.github.io/raudioapp/feed/" rel="self" type="application/rss+xml" />
 	<link>https://raudioasia.github.io/raudioapp</link>
-	<description>iKast</description>
-	<lastBuildDate>Sat, 14 Jan 2023 14:48:43 +0000</lastBuildDate>
+	<description>The Best of Live Radio, Music, News, Sports, and Podcasts</description>
+	<lastBuildDate>Wed, 05 Jul 2023 15:59:18 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -21,8 +21,8 @@
 	<generator>https://wordpress.org/?v=6.0.3</generator>
 
 <image>
-	<url>https://raudioasia.github.io/raudioapp/wp-content/uploads/raudio-2020-v2-icon.png</url>
-	<title>Raudio</title>
+	<url>https://raudioasia.github.io/raudioapp/wp-content/uploads/nou-raudio-icon-i.png</url>
+	<title>RAU</title>
 	<link>https://raudioasia.github.io/raudioapp</link>
 	<width>32</width>
 	<height>32</height>

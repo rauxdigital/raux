@@ -180,7 +180,8 @@
     color: #333 !important;
 }
 
-.pp-podcast[id^=pp-podcast-] .pod-entry__title a:hover, .pp-podcast[id^=pp-podcast-] .pod-entry__title a:focus,
+.pp-podcast[id^=pp-podcast-] .pod-entry__title a:hover,
+.pp-podcast[id^=pp-podcast-] .pod-entry__title a:focus,
 .pp-modal-window .pod-entry__title a:hover,
 .pp-modal-window .pod-entry__title a:focus
 {
@@ -229,7 +230,8 @@ button.pod-button
     box-shadow: none !important;
 }
 
-button.pod-button:hover, button.pod-button:focus
+button.pod-button:hover,
+button.pod-button:focus
 {
     border-width: 0;
     background-color: #65b84f;
@@ -455,14 +457,16 @@ audio.pp-podcast-episode
     display: none;
 }
 
-.pod-info__toggle:hover, .pod-info__toggle:focus
+.pod-info__toggle:hover,
+.pod-info__toggle:focus
 {
     background-color: transparent;
     box-shadow: none;
 }
 
 .pod-info__toggle:hover,
-.pod-info__toggle:hover *, .pod-info__toggle:focus,
+.pod-info__toggle:hover *,
+.pod-info__toggle:focus,
 .pod-info__toggle:focus *
 {
     color: #333 !important;
@@ -547,7 +551,8 @@ audio.pp-podcast-episode
     margin-left: 0;
 }
 
-.pod-items__menu .menu-item a:hover, .pod-items__menu .menu-item a:focus
+.pod-items__menu .menu-item a:hover,
+.pod-items__menu .menu-item a:focus
 {
     text-decoration: underline !important;
 }
@@ -654,7 +659,8 @@ audio.pp-podcast-episode
     width: 1.15em !important;
     height: 1.15em !important;
 
-    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
 }
 
 .pod-items__navi-menu a.subscribe-item .sub-text,
@@ -744,7 +750,7 @@ audio.pp-podcast-episode
     display: none;
 }
 
-.episode-list__search input[type='text']:-ms-input-placeholder
+.episode-list__search input[type='text']::-webkit-input-placeholder
 {
     line-height: 1;
 
@@ -772,14 +778,16 @@ audio.pp-podcast-episode
     min-height: 0 !important;
     padding: 0 !important;
 
-    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
 
     color: rgba(0, 0, 0, .3) !important;
     border-width: 0 !important;
     background-color: transparent !important;
 }
 
-.episode-list__clear-search.pod-button:hover, .episode-list__clear-search.pod-button:focus
+.episode-list__clear-search.pod-button:hover,
+.episode-list__clear-search.pod-button:focus
 {
     color: #333 !important;
     background-color: transparent;
@@ -798,7 +806,8 @@ audio.pp-podcast-episode
 
     min-height: 0 !important;
 
-    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
 
     color: rgba(0, 0, 0, .3) !important;
     border-width: 0 !important;
@@ -837,7 +846,8 @@ button.episode-list__load-more
     box-shadow: none !important;
 }
 
-button.episode-list__load-more:hover, button.episode-list__load-more:focus
+button.episode-list__load-more:hover,
+button.episode-list__load-more:focus
 {
     background: currentColor !important;
     background-color: transparent !important;
@@ -860,7 +870,10 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
 
 .episode-single__wrapper
 {
+    overflow-y: scroll;
+
     width: 100% !important;
+    max-height: 400px;
     padding: 20px;
 }
 
@@ -927,13 +940,15 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
     box-shadow: none !important;
 }
 
-.episode-single__close:hover, .episode-single__close:focus
+.episode-single__close:hover,
+.episode-single__close:focus
 {
     background-color: transparent !important;
 }
 
 .episode-single__close:hover,
-.episode-single__close:hover *, .episode-single__close:focus,
+.episode-single__close:hover *,
+.episode-single__close:focus,
 .episode-single__close:focus *
 {
     color: currentColor !important;
@@ -962,7 +977,8 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
     margin-bottom: 3px;
 }
 
-.activeEpisode .pod-entry__title a, .activeEpisode .pod-entry__title a:focus
+.activeEpisode .pod-entry__title a,
+.activeEpisode .pod-entry__title a:focus
 {
     outline: none;
 }
@@ -1016,7 +1032,7 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
     position: relative;
 
     max-width: 100%;
-	/* Hide native play button and control bar from iOS to favor plugin button */
+    /* Hide native play button and control bar from iOS to favor plugin button */
 }
 
 .ppjs__container:focus
@@ -1161,7 +1177,8 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
     cursor: pointer;
 }
 
-.ppjs__overlay-button, .ppjs__overlay-loading
+.ppjs__overlay-button,
+.ppjs__overlay-loading
 {
     font-size: 60px;
     line-height: 1;
@@ -1176,7 +1193,8 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
 {
     z-index: 1;
 
-    animation: ppjs__loading-spinner 1s linear infinite;
+    -webkit-animation: ppjs__loading-spinner 1s linear infinite;
+            animation: ppjs__loading-spinner 1s linear infinite;
 }
 
 .ppjs__layer
@@ -1234,7 +1252,8 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
     top: 50%;
     left: 50%;
 
-    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
 }
 
 .ppjs__time-rail
@@ -1275,7 +1294,8 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
 }
 
 .ppjs__audio-controls .ppjs__secondary-controls .ppjs__button button:hover,
-.ppjs__audio-controls .ppjs__secondary-controls .ppjs__button button:hover *, .ppjs__audio-controls .ppjs__secondary-controls .ppjs__button button:focus,
+.ppjs__audio-controls .ppjs__secondary-controls .ppjs__button button:hover *,
+.ppjs__audio-controls .ppjs__secondary-controls .ppjs__button button:focus,
 .ppjs__audio-controls .ppjs__secondary-controls .ppjs__button button:focus *,
 .ppjs__audio-controls .ppjs__secondary-controls .ppjs__button a.button:hover,
 .ppjs__audio-controls .ppjs__secondary-controls .ppjs__button a.button:hover *,
@@ -1370,7 +1390,8 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
     top: 50%;
     left: 50%;
 
-    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
 }
 
 .ppjs__audio .ppjs__button > button::after,
@@ -1380,7 +1401,8 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
 }
 
 .ppjs__audio .ppjs__button.ppjs__jump-forward-button > button,
-.ppjs__audio .ppjs__button.ppjs__jump-forward-button > a.button, .ppjs__audio .ppjs__button.ppjs__skip-backward-button > button,
+.ppjs__audio .ppjs__button.ppjs__jump-forward-button > a.button,
+.ppjs__audio .ppjs__button.ppjs__skip-backward-button > button,
 .ppjs__audio .ppjs__button.ppjs__skip-backward-button > a.button
 {
     font-size: 28px !important;
@@ -1405,7 +1427,8 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
     width: 36px;
     height: 22px;
 
-    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     letter-spacing: 0 !important;
 
     border: .09em solid rgba(0, 0, 0, .3);
@@ -1487,7 +1510,8 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
     border-radius: 4px;
 }
 
-.ppjs__audio .ppjs__button .play-rate-list li a:hover, .ppjs__audio .ppjs__button .play-rate-list li a:focus
+.ppjs__audio .ppjs__button .play-rate-list li a:hover,
+.ppjs__audio .ppjs__button .play-rate-list li a:focus
 {
     background-color: #f0f0f0;
 }
@@ -1538,7 +1562,8 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
 {
     display: block;
 
-    animation: ppjs__btn-spinner 1s linear infinite;
+    -webkit-animation: ppjs__btn-spinner 1s linear infinite;
+            animation: ppjs__btn-spinner 1s linear infinite;
 }
 
 .ppjs__audio .ppjs__button.ppjs__playpause-button button.playing .icon-pp-play
@@ -1552,19 +1577,23 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
 }
 
 .ppjs__audio .ppjs__button.ppjs__playpause-button button,
-.ppjs__audio .ppjs__button.ppjs__playpause-button button *, .ppjs__audio .ppjs__button.ppjs__playpause-button button:hover,
-.ppjs__audio .ppjs__button.ppjs__playpause-button button:hover *, .ppjs__audio .ppjs__button.ppjs__playpause-button button:focus,
+.ppjs__audio .ppjs__button.ppjs__playpause-button button *,
+.ppjs__audio .ppjs__button.ppjs__playpause-button button:hover,
+.ppjs__audio .ppjs__button.ppjs__playpause-button button:hover *,
+.ppjs__audio .ppjs__button.ppjs__playpause-button button:focus,
 .ppjs__audio .ppjs__button.ppjs__playpause-button button:focus *
 {
     color: #65b84f !important;
 }
 
-.ppjs__audio .ppjs__button.ppjs__skip-next-button, .ppjs__audio .ppjs__button.ppjs__skip-prev-button
+.ppjs__audio .ppjs__button.ppjs__skip-next-button,
+.ppjs__audio .ppjs__button.ppjs__skip-prev-button
 {
     display: none;
 }
 
-.inline-view .ppjs__audio .ppjs__button.ppjs__skip-next-button, .inline-view .ppjs__audio .ppjs__button.ppjs__skip-prev-button
+.inline-view .ppjs__audio .ppjs__button.ppjs__skip-next-button,
+.inline-view .ppjs__audio .ppjs__button.ppjs__skip-prev-button
 {
     display: inline-block;
 }
@@ -1584,7 +1613,8 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
     top: 50%;
     left: 50%;
 
-    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
 }
 
 .ppjs__video .ppjs__button.ppjs__playpause-button button .icon-pp-pause,
@@ -1602,7 +1632,8 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
 {
     display: block;
 
-    animation: ppjs__btn-spinner 1s linear infinite;
+    -webkit-animation: ppjs__btn-spinner 1s linear infinite;
+            animation: ppjs__btn-spinner 1s linear infinite;
 }
 
 .ppjs__video .ppjs__button.ppjs__playpause-button button.playing .icon-pp-play
@@ -1631,7 +1662,8 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
 
     display: block;
 
-    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
 }
 
 .ppjs__button > button,
@@ -1731,7 +1763,8 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
     top: 50%;
     left: 50%;
 
-    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
 }
 
 .ppjs__list-reveal .ppjs__button > button .icon-pp-hide-list,
@@ -1752,25 +1785,29 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
     display: none;
 }
 
-.list-default .ppjs__list-reveal .ppjs__button > button .icon-pp-hide-list, .list-default
+.list-default .ppjs__list-reveal .ppjs__button > button .icon-pp-hide-list,
+.list-default
 .ppjs__list-reveal .ppjs__button > a.button .icon-pp-hide-list
 {
     display: inline-block;
 }
 
-.list-default .ppjs__list-reveal .ppjs__button > button .icon-pp-show-list, .list-default
+.list-default .ppjs__list-reveal .ppjs__button > button .icon-pp-show-list,
+.list-default
 .ppjs__list-reveal .ppjs__button > a.button .icon-pp-show-list
 {
     display: none;
 }
 
-.list-default .ppjs__list-reveal .ppjs__button > button.toggled-on .icon-pp-hide-list, .list-default
+.list-default .ppjs__list-reveal .ppjs__button > button.toggled-on .icon-pp-hide-list,
+.list-default
 .ppjs__list-reveal .ppjs__button > a.button.toggled-on .icon-pp-hide-list
 {
     display: none;
 }
 
-.list-default .ppjs__list-reveal .ppjs__button > button.toggled-on .icon-pp-show-list, .list-default
+.list-default .ppjs__list-reveal .ppjs__button > button.toggled-on .icon-pp-show-list,
+.list-default
 .ppjs__list-reveal .ppjs__button > a.button.toggled-on .icon-pp-show-list
 {
     display: inline-block;
@@ -1782,7 +1819,8 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
     display: none !important;
 }
 
-.ppjs__container-keyboard-inactive a, .ppjs__container-keyboard-inactive a:focus,
+.ppjs__container-keyboard-inactive a,
+.ppjs__container-keyboard-inactive a:focus,
 .ppjs__container-keyboard-inactive button,
 .ppjs__container-keyboard-inactive button:focus,
 .ppjs__container-keyboard-inactive [role=slider],
@@ -1838,7 +1876,15 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
     margin: 0 10px;
 }
 
-.ppjs__time-total, .ppjs__time-buffering, .ppjs__time-loaded, .ppjs__time-current, .ppjs__time-float, .ppjs__time-hovered, .ppjs__time-float-current, .ppjs__time-float-corner, .ppjs__time-marker
+.ppjs__time-total,
+.ppjs__time-buffering,
+.ppjs__time-loaded,
+.ppjs__time-current,
+.ppjs__time-float,
+.ppjs__time-hovered,
+.ppjs__time-float-current,
+.ppjs__time-float-corner,
+.ppjs__time-marker
 {
     position: absolute;
 
@@ -1862,7 +1908,8 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
 {
     width: 100%;
 
-    animation: buffering-stripes 2s linear infinite;
+    -webkit-animation: buffering-stripes 2s linear infinite;
+            animation: buffering-stripes 2s linear infinite;
 
     background: linear-gradient(-45deg, rgba(255, 255, 255, .6) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .6) 50%, rgba(255, 255, 255, .6) 75%, transparent 75%, transparent);
     background-size: 15px 15px;
@@ -1873,7 +1920,8 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
     background: rgba(255, 255, 255, .4);
 }
 
-.ppjs__time-current, .ppjs__time-handle-content
+.ppjs__time-current,
+.ppjs__time-handle-content
 {
     background: rgba(255, 255, 255, .8);
 }
@@ -1895,25 +1943,35 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
     display: none;
 }
 
-.ppjs__time-current, .ppjs__time-buffering, .ppjs__time-loaded, .ppjs__time-hovered
+.ppjs__time-current,
+.ppjs__time-buffering,
+.ppjs__time-loaded,
+.ppjs__time-hovered
 {
     left: 0;
 
     width: 100%;
 
     transition: .15s ease-in all;
-    transform: scaleX(0);
-    transform-origin: 0 0;
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+    -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
 }
 
-.rtl .ppjs__time-current, .rtl .ppjs__time-buffering, .rtl .ppjs__time-loaded, .rtl .ppjs__time-hovered
+.rtl .ppjs__time-current,
+.rtl .ppjs__time-buffering,
+.rtl .ppjs__time-loaded,
+.rtl .ppjs__time-hovered
 {
-    transform-origin: 100% 0;
+    -webkit-transform-origin: 100% 0;
+            transform-origin: 100% 0;
 }
 
 .ppjs__time-buffering
 {
-    transform: scaleX(1);
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
 }
 
 .ppjs__time-hovered
@@ -1923,17 +1981,20 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
 
 .ppjs__time-hovered.no-hover
 {
-    transform: scaleX(0);
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
 }
 
-.ppjs__time-handle, .ppjs__time-handle-content
+.ppjs__time-handle,
+.ppjs__time-handle-content
 {
     position: absolute;
     z-index: 11;
     left: 0;
 
     cursor: pointer;
-    transform: translateX(0);
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
 
     border: 4px solid transparent;
 }
@@ -1946,7 +2007,8 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
     width: 12px;
     height: 12px;
 
-    transform: scale(1);
+    -webkit-transform: scale(1);
+            transform: scale(1);
 
     border: 6px solid #65b84f;
     border-radius: 50%;
@@ -1964,7 +2026,8 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
     height: 17px;
     margin-bottom: 9px;
 
-    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
     text-align: center;
 
     color: #fff;
@@ -1997,7 +2060,8 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
     width: 0;
     height: 0;
 
-    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
 
     border: solid 5px #333;
     border-color: #333 transparent transparent;
@@ -2066,13 +2130,17 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
     direction: rtl;
 }
 
-.rtl .ppjs__time-current, .rtl .ppjs__time-buffering, .rtl .ppjs__time-loaded, .rtl .ppjs__time-hovered
+.rtl .ppjs__time-current,
+.rtl .ppjs__time-buffering,
+.rtl .ppjs__time-loaded,
+.rtl .ppjs__time-hovered
 {
     right: 0;
     left: auto;
 }
 
-.rtl .ppjs__time-handle, .rtl .ppjs__time-handle-content
+.rtl .ppjs__time-handle,
+.rtl .ppjs__time-handle-content
 {
     right: 0;
     left: auto;
@@ -2086,7 +2154,8 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
 
 .rtl .ppjs__time-float
 {
-    transform: translateX(calc( 50% + 18px));
+    -webkit-transform: translateX(calc( 50% + 18px));
+            transform: translateX(calc( 50% + 18px));
 }
 
 .rtl .ppjs__time-float-current
@@ -2100,7 +2169,8 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
     right: 50%;
     left: auto;
 
-    transform: translateX(50%);
+    -webkit-transform: translateX(50%);
+            transform: translateX(50%);
 }
 
 .rtl .ppjs__time__long-video .ppjs__time-float
@@ -2120,17 +2190,53 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
     left: auto;
 }
 
+@-webkit-keyframes ppjs__loading-spinner
+{
+    0%
+    {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+        -webkit-transform-origin: center;
+                transform-origin: center;
+    }
+    100%
+    {
+        -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+        -webkit-transform-origin: center;
+                transform-origin: center;
+    }
+}
+
 @keyframes ppjs__loading-spinner
 {
     0%
     {
-        transform: rotate(0deg);
-        transform-origin: center;
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+        -webkit-transform-origin: center;
+                transform-origin: center;
     }
     100%
     {
-        transform: rotate(360deg);
-        transform-origin: center;
+        -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+        -webkit-transform-origin: center;
+                transform-origin: center;
+    }
+}
+
+@-webkit-keyframes ppjs__btn-spinner
+{
+    0%
+    {
+        -webkit-transform: translate(-50%, -50%) rotate(0deg);
+                transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100%
+    {
+        -webkit-transform: translate(-50%, -50%) rotate(360deg);
+                transform: translate(-50%, -50%) rotate(360deg);
     }
 }
 
@@ -2138,11 +2244,25 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
 {
     0%
     {
-        transform: translate(-50%, -50%) rotate(0deg);
+        -webkit-transform: translate(-50%, -50%) rotate(0deg);
+                transform: translate(-50%, -50%) rotate(0deg);
     }
     100%
     {
-        transform: translate(-50%, -50%) rotate(360deg);
+        -webkit-transform: translate(-50%, -50%) rotate(360deg);
+                transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@-webkit-keyframes buffering-stripes
+{
+    from
+    {
+        background-position: 0 0;
+    }
+    to
+    {
+        background-position: 30px 0;
     }
 }
 
@@ -2186,9 +2306,12 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
     margin-left: -35px;
     padding: 5px;
 
-    animation-name: hideMethod;
-    animation-duration: .5s;
-    animation-delay: 1s;
+    -webkit-animation-name: hideMethod;
+            animation-name: hideMethod;
+    -webkit-animation-duration: .5s;
+            animation-duration: .5s;
+    -webkit-animation-delay: 1s;
+            animation-delay: 1s;
     text-align: center;
 
     opacity: 1;
@@ -2196,7 +2319,8 @@ button.episode-list__load-more:hover, button.episode-list__load-more:focus
     border-radius: 6px;
     background-color: #555;
 
-    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
 }
 
 .pp-link-copied .pp-copylink-msg::after
@@ -2314,18 +2438,33 @@ a.ppjs__episode-excerpt .ppjs__more
 
 .pp-podcast
 {
-    animation-name: playerAdded;
-    animation-duration: .001s;
+    -webkit-animation-name: playerAdded;
+            animation-name: playerAdded;
+    -webkit-animation-duration: .001s;
+            animation-duration: .001s;
 }
 
 .episode-single__description .pp-podcast
 {
-    animation: none;
+    -webkit-animation: none;
+            animation: none;
 }
 
 .ppjs__additional_controls
 {
     display: none;
+}
+
+@-webkit-keyframes playerAdded
+{
+    from
+    {
+        opacity: .01;
+    }
+    to
+    {
+        opacity: 0;
+    }
 }
 
 @keyframes playerAdded
@@ -2336,6 +2475,22 @@ a.ppjs__episode-excerpt .ppjs__more
     }
     to
     {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes hideMethod
+{
+    from
+    {
+        visibility: visible;
+
+        opacity: 1;
+    }
+    to
+    {
+        visibility: hidden;
+
         opacity: 0;
     }
 }
@@ -2353,6 +2508,18 @@ a.ppjs__episode-excerpt .ppjs__more
         visibility: hidden;
 
         opacity: 0;
+    }
+}
+
+@-webkit-keyframes ppjs__epi-loading
+{
+    50%
+    {
+        background-size: 70%;
+    }
+    100%
+    {
+        background-position: 125% 0;
     }
 }
 
@@ -2385,12 +2552,14 @@ a.ppjs__episode-excerpt .ppjs__more
     top: 50%;
     left: 50%;
 
-    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
 }
 
 .episode-search__loading .icon-pp-refresh
 {
-    animation: ppjs__loading-spinner 1s linear infinite;
+    -webkit-animation: ppjs__loading-spinner 1s linear infinite;
+            animation: ppjs__loading-spinner 1s linear infinite;
 }
 
 .episode-search.toggled-on
@@ -2398,7 +2567,8 @@ a.ppjs__episode-excerpt .ppjs__more
     display: block;
 }
 
-.ppjs__audio .ppjs__share-button ul.ppshare__social
+.ppjs__audio .ppjs__share-button ul.ppshare__social,
+.ppjs__video .ppjs__share-button ul.ppshare__social
 {
     position: absolute;
     z-index: 9999;
@@ -2416,23 +2586,30 @@ a.ppjs__episode-excerpt .ppjs__more
     box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
 }
 
-.hide-download .ppjs__audio .ppjs__share-button ul.ppshare__social
+.hide-download .ppjs__audio .ppjs__share-button ul.ppshare__social,
+.hide-download
+.ppjs__video .ppjs__share-button ul.ppshare__social
 {
     width: 190px;
 }
 
-.hide-social .ppjs__audio .ppjs__share-button ul.ppshare__social
+.hide-social .ppjs__audio .ppjs__share-button ul.ppshare__social,
+.hide-social
+.ppjs__video .ppjs__share-button ul.ppshare__social
 {
     width: auto;
 }
 
-.rtl .ppjs__audio .ppjs__share-button ul.ppshare__social
+.rtl .ppjs__audio .ppjs__share-button ul.ppshare__social,
+.rtl
+.ppjs__video .ppjs__share-button ul.ppshare__social
 {
     right: auto;
     left: 10%;
 }
 
-.ppjs__audio .ppjs__share-button ul.ppshare__social li
+.ppjs__audio .ppjs__share-button ul.ppshare__social li,
+.ppjs__video .ppjs__share-button ul.ppshare__social li
 {
     font-size: 18px !important;
     line-height: 1 !important;
@@ -2446,12 +2623,14 @@ a.ppjs__episode-excerpt .ppjs__more
     border-width: 0 !important;
 }
 
-.ppjs__audio .ppjs__share-button ul.ppshare__social li:last-of-type
+.ppjs__audio .ppjs__share-button ul.ppshare__social li:last-of-type,
+.ppjs__video .ppjs__share-button ul.ppshare__social li:last-of-type
 {
     margin-right: 0 !important;
 }
 
-.ppjs__audio .ppjs__share-button ul.ppshare__social li a
+.ppjs__audio .ppjs__share-button ul.ppshare__social li a,
+.ppjs__video .ppjs__share-button ul.ppshare__social li a
 {
     position: relative;
 
@@ -2465,21 +2644,27 @@ a.ppjs__episode-excerpt .ppjs__more
     border-radius: 100%;
 }
 
-.ppjs__audio .ppjs__share-button ul.ppshare__social li a:hover, .ppjs__audio .ppjs__share-button ul.ppshare__social li a:focus
+.ppjs__audio .ppjs__share-button ul.ppshare__social li a:hover,
+.ppjs__audio .ppjs__share-button ul.ppshare__social li a:focus,
+.ppjs__video .ppjs__share-button ul.ppshare__social li a:hover,
+.ppjs__video .ppjs__share-button ul.ppshare__social li a:focus
 {
     background-color: #f0f0f0;
 }
 
-.ppjs__audio .ppjs__share-button ul.ppshare__social li a .icon
+.ppjs__audio .ppjs__share-button ul.ppshare__social li a .icon,
+.ppjs__video .ppjs__share-button ul.ppshare__social li a .icon
 {
     position: absolute;
     top: 50%;
     left: 50%;
 
-    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
 }
 
-.ppjs__audio .ppjs__share-button ul.ppshare__social:after
+.ppjs__audio .ppjs__share-button ul.ppshare__social:after,
+.ppjs__video .ppjs__share-button ul.ppshare__social:after
 {
     display: table;
     clear: both;
@@ -2487,24 +2672,34 @@ a.ppjs__episode-excerpt .ppjs__more
     content: '';
 }
 
-.ppjs__audio .ppjs__share-button.toggled-window ul.ppshare__social
+.ppjs__audio .ppjs__share-button.toggled-window ul.ppshare__social,
+.ppjs__video .ppjs__share-button.toggled-window ul.ppshare__social
 {
     display: block;
 }
 
 .hide-share .ppjs__audio .ppjs__share-button,
 .hide-social .ppjs__audio .ppjs__share-button,
-.hide-download .ppjs__audio .ppjs__share-button .ppshare-item.download
+.hide-download .ppjs__audio .ppjs__share-button .ppshare-item.download,
+.hide-share
+.ppjs__video .ppjs__share-button,
+.hide-social
+.ppjs__video .ppjs__share-button,
+.hide-download
+.ppjs__video .ppjs__share-button .ppshare-item.download
 {
     display: none !important;
 }
 
+.ppjs__video .ppjs__download-alt-button,
 .ppjs__audio .ppjs__download-alt-button
 {
     display: none;
 }
 
-.hide-social .ppjs__audio .ppjs__download-alt-button
+.hide-social .ppjs__video .ppjs__download-alt-button,
+.hide-social
+.ppjs__audio .ppjs__download-alt-button
 {
     display: inline-block;
 }
@@ -2665,7 +2860,8 @@ a.ppjs__episode-excerpt .ppjs__more
     color: #fff !important;
 }
 
-.pp-podcast.light-color.lv4[id^=pp-podcast-] .pod-entry__title a:hover, .pp-podcast.light-color.lv4[id^=pp-podcast-] .pod-entry__title a:focus
+.pp-podcast.light-color.lv4[id^=pp-podcast-] .pod-entry__title a:hover,
+.pp-podcast.light-color.lv4[id^=pp-podcast-] .pod-entry__title a:focus
 {
     color: #fff !important;
 }
@@ -2721,7 +2917,8 @@ a.ppjs__episode-excerpt .ppjs__more
 }
 
 .pp-podcast.light-color.playerview[id^=pp-podcast-]__close:hover,
-.pp-podcast.light-color.playerview[id^=pp-podcast-]__close:hover *, .pp-podcast.light-color.playerview[id^=pp-podcast-]__close:focus,
+.pp-podcast.light-color.playerview[id^=pp-podcast-]__close:hover *,
+.pp-podcast.light-color.playerview[id^=pp-podcast-]__close:focus,
 .pp-podcast.light-color.playerview[id^=pp-podcast-]__close:focus *,
 .pp-podcast.light-text.postview[id^=pp-podcast-]__close:hover,
 .pp-podcast.light-text.postview[id^=pp-podcast-]__close:hover *,
@@ -2749,7 +2946,9 @@ a.ppjs__episode-excerpt .ppjs__more
     border-color: rgba(255, 255, 255, .1);
 }
 
-.pod-header-title + .pp-podcast.light-color.playerview[id^=pp-podcast-] .pod-info__header, .pod-header-title + .pp-podcast.light-text.postview[id^=pp-podcast-] .pod-info__header, .pod-header-title + .inline-view.light-color .pod-info__header
+.pod-header-title + .pp-podcast.light-color.playerview[id^=pp-podcast-] .pod-info__header,
+.pod-header-title + .pp-podcast.light-text.postview[id^=pp-podcast-] .pod-info__header,
+.pod-header-title + .inline-view.light-color .pod-info__header
 {
     border-color: rgba(255, 255, 255, .1);
 }
@@ -2762,7 +2961,8 @@ a.ppjs__episode-excerpt .ppjs__more
 }
 
 .pp-podcast.light-color.playerview[id^=pp-podcast-] .pod-info__toggle:hover,
-.pp-podcast.light-color.playerview[id^=pp-podcast-] .pod-info__toggle:hover *, .pp-podcast.light-color.playerview[id^=pp-podcast-] .pod-info__toggle:focus,
+.pp-podcast.light-color.playerview[id^=pp-podcast-] .pod-info__toggle:hover *,
+.pp-podcast.light-color.playerview[id^=pp-podcast-] .pod-info__toggle:focus,
 .pp-podcast.light-color.playerview[id^=pp-podcast-] .pod-info__toggle:focus *,
 .pp-podcast.light-text.postview[id^=pp-podcast-] .pod-info__toggle:hover,
 .pp-podcast.light-text.postview[id^=pp-podcast-] .pod-info__toggle:hover *,
@@ -2811,7 +3011,9 @@ a.ppjs__episode-excerpt .ppjs__more
     color: #fff !important;
 }
 
-.pp-podcast.light-color.playerview[id^=pp-podcast-] .episode-list__search input[type='text']:-ms-input-placeholder, .pp-podcast.light-text.postview[id^=pp-podcast-] .episode-list__search input[type='text']:-ms-input-placeholder, .inline-view.light-color .episode-list__search input[type='text']:-ms-input-placeholder
+.pp-podcast.light-color.playerview[id^=pp-podcast-] .episode-list__search input[type='text']::-webkit-input-placeholder,
+.pp-podcast.light-text.postview[id^=pp-podcast-] .episode-list__search input[type='text']::-webkit-input-placeholder,
+.inline-view.light-color .episode-list__search input[type='text']::-webkit-input-placeholder
 {
     color: #f7f7f7;
 }
@@ -2823,7 +3025,8 @@ a.ppjs__episode-excerpt .ppjs__more
     color: #f7f7f7;
 }
 
-.pp-podcast.light-color.playerview[id^=pp-podcast-] .episode-list__search-icon, .pp-podcast.light-color.playerview[id^=pp-podcast-] .episode-list__clear-search.pod-button,
+.pp-podcast.light-color.playerview[id^=pp-podcast-] .episode-list__search-icon,
+.pp-podcast.light-color.playerview[id^=pp-podcast-] .episode-list__clear-search.pod-button,
 .pp-podcast.light-text.postview[id^=pp-podcast-] .episode-list__search-icon,
 .pp-podcast.light-text.postview[id^=pp-podcast-] .episode-list__clear-search.pod-button,
 .inline-view.light-color .episode-list__search-icon,
@@ -2832,7 +3035,8 @@ a.ppjs__episode-excerpt .ppjs__more
     color: rgba(255, 255, 255, .15) !important;
 }
 
-.pp-podcast.light-color.playerview[id^=pp-podcast-] .episode-list__clear-search.pod-button:hover, .pp-podcast.light-color.playerview[id^=pp-podcast-] .episode-list__clear-search.pod-button:focus,
+.pp-podcast.light-color.playerview[id^=pp-podcast-] .episode-list__clear-search.pod-button:hover,
+.pp-podcast.light-color.playerview[id^=pp-podcast-] .episode-list__clear-search.pod-button:focus,
 .pp-podcast.light-text.postview[id^=pp-podcast-] .episode-list__clear-search.pod-button:hover,
 .pp-podcast.light-text.postview[id^=pp-podcast-] .episode-list__clear-search.pod-button:focus,
 .inline-view.light-color .episode-list__clear-search.pod-button:hover,
@@ -2849,7 +3053,8 @@ a.ppjs__episode-excerpt .ppjs__more
 }
 
 .pp-podcast.light-color.playerview[id^=pp-podcast-] .ppjs__audio-controls .ppjs__secondary-controls .ppjs__button button:hover,
-.pp-podcast.light-color.playerview[id^=pp-podcast-] .ppjs__audio-controls .ppjs__secondary-controls .ppjs__button button:hover *, .pp-podcast.light-color.playerview[id^=pp-podcast-] .ppjs__audio-controls .ppjs__secondary-controls .ppjs__button button:focus,
+.pp-podcast.light-color.playerview[id^=pp-podcast-] .ppjs__audio-controls .ppjs__secondary-controls .ppjs__button button:hover *,
+.pp-podcast.light-color.playerview[id^=pp-podcast-] .ppjs__audio-controls .ppjs__secondary-controls .ppjs__button button:focus,
 .pp-podcast.light-color.playerview[id^=pp-podcast-] .ppjs__audio-controls .ppjs__secondary-controls .ppjs__button button:focus *,
 .pp-podcast.light-color.playerview[id^=pp-podcast-] .ppjs__audio-controls .ppjs__secondary-controls .ppjs__button a.button:hover,
 .pp-podcast.light-color.playerview[id^=pp-podcast-] .ppjs__audio-controls .ppjs__secondary-controls .ppjs__button a.button:hover *,
@@ -2923,7 +3128,8 @@ a.ppjs__episode-excerpt .ppjs__more
     color: #fff !important;
 }
 
-.pp-podcast.light-color.playerview[id^=pp-podcast-] .pod-entry__title a:hover, .pp-podcast.light-color.playerview[id^=pp-podcast-] .pod-entry__title a:focus,
+.pp-podcast.light-color.playerview[id^=pp-podcast-] .pod-entry__title a:hover,
+.pp-podcast.light-color.playerview[id^=pp-podcast-] .pod-entry__title a:focus,
 .pp-podcast.light-text.postview[id^=pp-podcast-] .pod-entry__title a:hover,
 .pp-podcast.light-text.postview[id^=pp-podcast-] .pod-entry__title a:focus,
 .inline-view.light-color .pod-entry__title a:hover,
@@ -2938,7 +3144,8 @@ a.ppjs__episode-excerpt .ppjs__more
     color: #333;
 }
 
-.pp-podcast.light-accent[id^=pp-podcast-] .episode-list__load-more:hover, .pp-podcast.light-accent[id^=pp-podcast-] .episode-list__load-more:focus,
+.pp-podcast.light-accent[id^=pp-podcast-] .episode-list__load-more:hover,
+.pp-podcast.light-accent[id^=pp-podcast-] .episode-list__load-more:focus,
 .pp-modal-window.light-accent .episode-list__load-more:hover,
 .pp-modal-window.light-accent .episode-list__load-more:focus
 {
@@ -2973,7 +3180,8 @@ a.ppjs__episode-excerpt .ppjs__more
     border-color: transparent transparent transparent #333;
 }
 
-.pp-podcast.light-accent[id^=pp-podcast-] .postview .episode-list__load-more:hover, .pp-podcast.light-accent[id^=pp-podcast-] .postview .episode-list__load-more:focus,
+.pp-podcast.light-accent[id^=pp-podcast-] .postview .episode-list__load-more:hover,
+.pp-podcast.light-accent[id^=pp-podcast-] .postview .episode-list__load-more:focus,
 .pp-modal-window.light-accent .postview .episode-list__load-more:hover,
 .pp-modal-window.light-accent .postview .episode-list__load-more:focus
 {
@@ -3228,7 +3436,7 @@ a.ppjs__episode-excerpt .ppjs__more
         background: rgba(136, 136, 136, .8);
     }
     .wide-player .episode-single__title,
-	.pp-modal-wrapper .episode-single__title
+    .pp-modal-wrapper .episode-single__title
     {
         font-size: 20px;
     }
@@ -3267,7 +3475,7 @@ a.ppjs__episode-excerpt .ppjs__more
         display: none;
     }
     .wide-player .ppjs__audio-controls,
-	.pp-modal-window .ppjs__audio-controls
+    .pp-modal-window .ppjs__audio-controls
     {
         flex-direction: row;
 
@@ -3280,7 +3488,7 @@ a.ppjs__episode-excerpt .ppjs__more
         justify-content: flex-start;
     }
     .wide-player .ppjs__audio-controls .ppjs__secondary-controls .ppjs__control_btns,
-	.pp-modal-window .ppjs__audio-controls .ppjs__secondary-controls .ppjs__control_btns
+    .pp-modal-window .ppjs__audio-controls .ppjs__secondary-controls .ppjs__control_btns
     {
         margin: 20px 0 0;
 
@@ -3295,7 +3503,7 @@ a.ppjs__episode-excerpt .ppjs__more
         justify-content: center;
     }
     .wide-player .ppjs__audio-controls .dyna-msg-title,
-	.pp-modal-window .ppjs__audio-controls .dyna-msg-title
+    .pp-modal-window .ppjs__audio-controls .dyna-msg-title
     {
         font-size: 15px;
 
@@ -3307,7 +3515,7 @@ a.ppjs__episode-excerpt .ppjs__more
         text-overflow: ellipsis;
     }
     .wide-player .ppjs__audio-time-rail,
-	.modal-view .ppjs__audio-time-rail
+    .modal-view .ppjs__audio-time-rail
     {
         margin: 0 20px;
 
@@ -3318,49 +3526,52 @@ a.ppjs__episode-excerpt .ppjs__more
         margin: 0 10px;
     }
     .wide-player .ppjs__audio .ppjs__button .play-rate-list,
-	.pp-modal-window .ppjs__audio .ppjs__button .play-rate-list
+    .pp-modal-window .ppjs__audio .ppjs__button .play-rate-list
     {
         top: 100%;
         bottom: auto;
     }
-    .wide-player .ppjs__audio .ppjs__button.ppjs__skip-next-button, .wide-player .ppjs__audio .ppjs__button.ppjs__skip-prev-button
+    .wide-player .ppjs__audio .ppjs__button.ppjs__skip-next-button,
+    .wide-player .ppjs__audio .ppjs__button.ppjs__skip-prev-button
     {
         display: inline-block;
     }
     .single-episode .ppjs__audio .ppjs__button.ppjs__skip-next-button,
-	.single-audio .ppjs__audio .ppjs__button.ppjs__skip-next-button, .single-episode .ppjs__audio .ppjs__button.ppjs__skip-prev-button,
-	.single-audio .ppjs__audio .ppjs__button.ppjs__skip-prev-button
+    .single-audio .ppjs__audio .ppjs__button.ppjs__skip-next-button,
+    .single-episode .ppjs__audio .ppjs__button.ppjs__skip-prev-button,
+    .single-audio .ppjs__audio .ppjs__button.ppjs__skip-prev-button
     {
         display: none;
     }
     .wide-player .ppjs__list-reveal,
-	.pp-modal-window .ppjs__list-reveal
+    .pp-modal-window .ppjs__list-reveal
     {
         display: none;
     }
     .wide-player .ppjs__list-reveal .ppjs__button,
-	.pp-modal-window .ppjs__list-reveal .ppjs__button
+    .pp-modal-window .ppjs__list-reveal .ppjs__button
     {
         margin: 0 10px;
     }
     .wide-player .ppjs__list-reveal .ppjs__button > button,
-	.pp-modal-window .ppjs__list-reveal .ppjs__button > button, .wide-player
-	.ppjs__list-reveal .ppjs__button > a.button,
-	.pp-modal-window
-	.ppjs__list-reveal .ppjs__button > a.button
+    .pp-modal-window .ppjs__list-reveal .ppjs__button > button,
+    .wide-player
+    .ppjs__list-reveal .ppjs__button > a.button,
+    .pp-modal-window
+    .ppjs__list-reveal .ppjs__button > a.button
     {
         width: 45px;
         height: 45px;
     }
     .wide-player .ppjs__img-wrapper,
-	.pp-modal-window .ppjs__img-wrapper
+    .pp-modal-window .ppjs__img-wrapper
     {
         width: 100px;
         height: 100px;
         margin: 0 20px 0 0;
     }
     .wide-player .ppjs__img-wrapper img,
-	.pp-modal-window .ppjs__img-wrapper img
+    .pp-modal-window .ppjs__img-wrapper img
     {
         width: 100%;
         height: 100%;
@@ -3369,12 +3580,12 @@ a.ppjs__episode-excerpt .ppjs__more
            object-fit: cover;
     }
     .ppjs__head-container,
-	.ppjs__secondary-controls
+    .ppjs__secondary-controls
     {
         flex-basis: 100%;
     }
     .wide-player .ppjs__head-container,
-	.pp-modal-window .ppjs__head-container
+    .pp-modal-window .ppjs__head-container
     {
         display: flex;
         flex-direction: row;
@@ -3398,7 +3609,7 @@ a.ppjs__episode-excerpt .ppjs__more
         text-overflow: ellipsis;
     }
     .wide-player .ppjs__episode-title,
-	.pp-modal-window .ppjs__episode-title
+    .pp-modal-window .ppjs__episode-title
     {
         font-size: 16px;
         line-height: 1.5;
@@ -3412,7 +3623,11 @@ a.ppjs__episode-excerpt .ppjs__more
         display: block;
     }
     .wide-player .ppjs__audio .ppjs__share-button ul.ppshare__social,
-	.pp-modal-window .ppjs__audio .ppjs__share-button ul.ppshare__social
+    .pp-modal-window .ppjs__audio .ppjs__share-button ul.ppshare__social,
+    .wide-player
+    .ppjs__video .ppjs__share-button ul.ppshare__social,
+    .pp-modal-window
+    .ppjs__video .ppjs__share-button ul.ppshare__social
     {
         top: 100%;
         bottom: auto;
@@ -3425,52 +3640,53 @@ a.ppjs__episode-excerpt .ppjs__more
     {
         display: none !important;
     }
-    .pp-podcast.light-color.playerview[id^=pp-podcast-].lv3.wide-player .pod-content__list, .pp-podcast.light-color.playerview[id^=pp-podcast-].legacy.wide-player .pod-content__list,
-	.pp-podcast.light-text.postview[id^=pp-podcast-].lv3.wide-player .pod-content__list,
-	.pp-podcast.light-text.postview[id^=pp-podcast-].legacy.wide-player .pod-content__list,
-	.inline-view.light-color.lv3.wide-player .pod-content__list,
-	.inline-view.light-color.legacy.wide-player .pod-content__list
+    .pp-podcast.light-color.playerview[id^=pp-podcast-].lv3.wide-player .pod-content__list,
+    .pp-podcast.light-color.playerview[id^=pp-podcast-].legacy.wide-player .pod-content__list,
+    .pp-podcast.light-text.postview[id^=pp-podcast-].lv3.wide-player .pod-content__list,
+    .pp-podcast.light-text.postview[id^=pp-podcast-].legacy.wide-player .pod-content__list,
+    .inline-view.light-color.lv3.wide-player .pod-content__list,
+    .inline-view.light-color.legacy.wide-player .pod-content__list
     {
         border-color: rgba(255, 255, 255, .1);
     }
     .pp-podcast.light-color.playerview[id^=pp-podcast-].modern.wide-player .ppjs__audio .ppjs__time-handle-content,
-	.pp-podcast.light-text.postview[id^=pp-podcast-].modern.wide-player .ppjs__audio .ppjs__time-handle-content,
-	.inline-view.light-color.modern.wide-player .ppjs__audio .ppjs__time-handle-content
+    .pp-podcast.light-text.postview[id^=pp-podcast-].modern.wide-player .ppjs__audio .ppjs__time-handle-content,
+    .inline-view.light-color.modern.wide-player .ppjs__audio .ppjs__time-handle-content
     {
         border-color: #fff;
     }
     .pp-podcast.light-color.playerview[id^=pp-podcast-].modern.wide-player .ppjs__audio .ppjs__audio-time-rail,
-	.pp-podcast.light-text.postview[id^=pp-podcast-].modern.wide-player .ppjs__audio .ppjs__audio-time-rail,
-	.inline-view.light-color.modern.wide-player .ppjs__audio .ppjs__audio-time-rail
+    .pp-podcast.light-text.postview[id^=pp-podcast-].modern.wide-player .ppjs__audio .ppjs__audio-time-rail,
+    .inline-view.light-color.modern.wide-player .ppjs__audio .ppjs__audio-time-rail
     {
         background-color: rgba(255, 255, 255, .05);
     }
     .pp-podcast.light-color.playerview[id^=pp-podcast-].modern.wide-player .ppjs__audio .ppjs__button .play-rate-text,
-	.pp-podcast.light-text.postview[id^=pp-podcast-].modern.wide-player .ppjs__audio .ppjs__button .play-rate-text,
-	.inline-view.light-color.modern.wide-player .ppjs__audio .ppjs__button .play-rate-text
+    .pp-podcast.light-text.postview[id^=pp-podcast-].modern.wide-player .ppjs__audio .ppjs__button .play-rate-text,
+    .inline-view.light-color.modern.wide-player .ppjs__audio .ppjs__button .play-rate-text
     {
         border-color: rgba(255, 255, 255, .3);
     }
     .pp-podcast.light-color.playerview[id^=pp-podcast-].modern.wide-player .episode-list__search input[type='text'],
-	.pp-podcast.light-text.postview[id^=pp-podcast-].modern.wide-player .episode-list__search input[type='text'],
-	.inline-view.light-color.modern.wide-player .episode-list__search input[type='text']
+    .pp-podcast.light-text.postview[id^=pp-podcast-].modern.wide-player .episode-list__search input[type='text'],
+    .inline-view.light-color.modern.wide-player .episode-list__search input[type='text']
     {
         border-color: rgba(255, 255, 255, .1) !important;
     }
     .pp-podcast.light-color.playerview[id^=pp-podcast-].modern.wide-player .pod-entry:nth-of-type(2n):not(.activeEpisode),
-	.pp-podcast.light-text.postview[id^=pp-podcast-].modern.wide-player .pod-entry:nth-of-type(2n):not(.activeEpisode),
-	.inline-view.light-color.modern.wide-player .pod-entry:nth-of-type(2n):not(.activeEpisode)
+    .pp-podcast.light-text.postview[id^=pp-podcast-].modern.wide-player .pod-entry:nth-of-type(2n):not(.activeEpisode),
+    .inline-view.light-color.modern.wide-player .pod-entry:nth-of-type(2n):not(.activeEpisode)
     {
         background-color: rgba(255, 255, 255, .05);
     }
     .pp-podcast.light-color.playerview[id^=pp-podcast-].modern.wide-player .ppjs__audio-timer,
-	.pp-podcast.light-text.postview[id^=pp-podcast-].modern.wide-player .ppjs__audio-timer,
-	.inline-view.light-color.modern.wide-player .ppjs__audio-timer
+    .pp-podcast.light-text.postview[id^=pp-podcast-].modern.wide-player .ppjs__audio-timer,
+    .inline-view.light-color.modern.wide-player .ppjs__audio-timer
     {
         color: rgba(255, 255, 255, .65);
     }
     .pp-podcast.light-accent[id^=pp-podcast-].modern.wide-player .ppjs__audio .ppjs__button.ppjs__playpause-button .icon,
-	.pp-modal-window.light-accent.modern.wide-player .ppjs__audio .ppjs__button.ppjs__playpause-button .icon
+    .pp-modal-window.light-accent.modern.wide-player .ppjs__audio .ppjs__button.ppjs__playpause-button .icon
     {
         fill: #333 !important;
     }
@@ -3550,19 +3766,23 @@ a.ppjs__episode-excerpt .ppjs__more
         font-size: 18px;
         line-height: 1.33;
     }
-    .modern.wide-player.single-episode .ppjs__podcast-title, .modern.wide-player.single-audio .ppjs__podcast-title
+    .modern.wide-player.single-episode .ppjs__podcast-title,
+    .modern.wide-player.single-audio .ppjs__podcast-title
     {
         font-size: 17px;
     }
-    .modern.wide-player.single-episode .ppjs__episode-title, .modern.wide-player.single-audio .ppjs__episode-title
+    .modern.wide-player.single-episode .ppjs__episode-title,
+    .modern.wide-player.single-audio .ppjs__episode-title
     {
         font-size: 20px;
     }
-    .modern.wide-player.single-episode .ppjs__img-wrapper, .modern.wide-player.single-audio .ppjs__img-wrapper
+    .modern.wide-player.single-episode .ppjs__img-wrapper,
+    .modern.wide-player.single-audio .ppjs__img-wrapper
     {
         height: 150px;
     }
-    .modern.wide-player.single-episode .pp-podcast__single, .modern.wide-player.single-audio .pp-podcast__single
+    .modern.wide-player.single-episode .pp-podcast__single,
+    .modern.wide-player.single-audio .pp-podcast__single
     {
         margin-bottom: 10px;
     }
@@ -3583,7 +3803,7 @@ a.ppjs__episode-excerpt .ppjs__more
         margin-left: 0;
     }
     .modern.wide-player .ppjs__audio .ppjs__button > button,
-	.modern.wide-player .ppjs__audio .ppjs__button > a.button
+    .modern.wide-player .ppjs__audio .ppjs__button > a.button
     {
         font-size: 18px !important;
 
@@ -3591,14 +3811,14 @@ a.ppjs__episode-excerpt .ppjs__more
         height: 40px;
     }
     .modern.wide-player .ppjs__audio .ppjs__button.ppjs__jump-forward-button > button,
-	.modern.wide-player .ppjs__audio .ppjs__button.ppjs__jump-forward-button > a.button,
-	.modern.wide-player .ppjs__audio .ppjs__button.ppjs__skip-backward-button > button,
-	.modern.wide-player .ppjs__audio .ppjs__button.ppjs__skip-backward-button > a.button
+    .modern.wide-player .ppjs__audio .ppjs__button.ppjs__jump-forward-button > a.button,
+    .modern.wide-player .ppjs__audio .ppjs__button.ppjs__skip-backward-button > button,
+    .modern.wide-player .ppjs__audio .ppjs__button.ppjs__skip-backward-button > a.button
     {
         font-size: 24px !important;
     }
     .modern.wide-player .ppjs__audio .ppjs__button.ppjs__playpause-button > button,
-	.modern.wide-player .ppjs__audio .ppjs__button.ppjs__playpause-button > a.button
+    .modern.wide-player .ppjs__audio .ppjs__button.ppjs__playpause-button > a.button
     {
         font-size: 22px !important;
 
@@ -3647,7 +3867,8 @@ a.ppjs__episode-excerpt .ppjs__more
     {
         order: 4;
     }
-    .modern.wide-player .ppjs__audio .ppjs__button.ppjs__download-alt-button, .modern.wide-player .ppjs__audio .ppjs__button.ppjs__share-button
+    .modern.wide-player .ppjs__audio .ppjs__button.ppjs__download-alt-button,
+    .modern.wide-player .ppjs__audio .ppjs__button.ppjs__share-button
     {
         position: relative;
         right: -10px;
@@ -3658,16 +3879,16 @@ a.ppjs__episode-excerpt .ppjs__more
         order: 5;
     }
     .modern.wide-player .ppjs__skip-prev-button,
-	.modern.wide-player .ppjs__skip-next-button
+    .modern.wide-player .ppjs__skip-next-button
     {
         display: none !important;
     }
     .modern.wide-player .ppjs__audio .ppjs__time-rail,
-	.modern.wide-player .ppjs__audio .ppjs__time-total,
-	.modern.wide-player .ppjs__audio .ppjs__time-buffering,
-	.modern.wide-player .ppjs__audio .ppjs__time-loaded,
-	.modern.wide-player .ppjs__audio .ppjs__time-hovered,
-	.modern.wide-player .ppjs__audio .ppjs__time-current
+    .modern.wide-player .ppjs__audio .ppjs__time-total,
+    .modern.wide-player .ppjs__audio .ppjs__time-buffering,
+    .modern.wide-player .ppjs__audio .ppjs__time-loaded,
+    .modern.wide-player .ppjs__audio .ppjs__time-hovered,
+    .modern.wide-player .ppjs__audio .ppjs__time-current
     {
         height: 7px;
 
@@ -3781,11 +4002,13 @@ a.ppjs__episode-excerpt .ppjs__more
         border: 1px solid rgba(0, 0, 0, .3);
         border-radius: 8px;
     }
-    .modern.wide-player.single-audio .pod-launch, .modern.wide-player.single-episode .pod-launch
+    .modern.wide-player.single-audio .pod-launch,
+    .modern.wide-player.single-episode .pod-launch
     {
         padding: 0 10px;
     }
-    .modern.wide-player.single-audio .pod-launch a.subscribe-item, .modern.wide-player.single-episode .pod-launch a.subscribe-item
+    .modern.wide-player.single-audio .pod-launch a.subscribe-item,
+    .modern.wide-player.single-episode .pod-launch a.subscribe-item
     {
         border-width: 0;
     }
@@ -3798,23 +4021,25 @@ a.ppjs__episode-excerpt .ppjs__more
         right: auto;
         left: 0;
     }
-    .pp-modal-window .ppjs__audio .ppjs__button.ppjs__skip-next-button, .pp-modal-window .ppjs__audio .ppjs__button.ppjs__skip-prev-button
+    .pp-modal-window .ppjs__audio .ppjs__button.ppjs__skip-next-button,
+    .pp-modal-window .ppjs__audio .ppjs__button.ppjs__skip-prev-button
     {
         display: inline-block;
     }
     .single-episode .ppjs__audio .ppjs__button.ppjs__skip-next-button,
-	.single-audio .ppjs__audio .ppjs__button.ppjs__skip-next-button, .single-episode .ppjs__audio .ppjs__button.ppjs__skip-prev-button,
-	.single-audio .ppjs__audio .ppjs__button.ppjs__skip-prev-button
+    .single-audio .ppjs__audio .ppjs__button.ppjs__skip-next-button,
+    .single-episode .ppjs__audio .ppjs__button.ppjs__skip-prev-button,
+    .single-audio .ppjs__audio .ppjs__button.ppjs__skip-prev-button
     {
         display: none;
     }
     .medium-player .ppjs__podcast-title,
-	.pp-modal-window .ppjs__podcast-title
+    .pp-modal-window .ppjs__podcast-title
     {
         display: block;
     }
     .medium-player a.ppjs__episode-excerpt,
-	.pp-modal-window a.ppjs__episode-excerpt
+    .pp-modal-window a.ppjs__episode-excerpt
     {
         font-size: 15px;
         line-height: 1.33;
@@ -3879,7 +4104,7 @@ a.ppjs__episode-excerpt .ppjs__more
         max-height: calc( 100% - 220px);
     }
     .legacy.medium-player .episode-single__close,
-	.legacy.medium-player .ppjs__script-button
+    .legacy.medium-player .ppjs__script-button
     {
         display: none;
     }
@@ -3922,28 +4147,34 @@ a.ppjs__episode-excerpt .ppjs__more
     {
         padding: 20px 20px 0;
     }
-    .legacy.medium-player.no-header .episode-list__wrapper, .legacy.medium-player.header-hidden .episode-list__wrapper
+    .legacy.medium-player.no-header .episode-list__wrapper,
+    .legacy.medium-player.header-hidden .episode-list__wrapper
     {
         height: 534px;
         min-height: 534px;
         max-height: 534px;
     }
-    .legacy.medium-player.no-header .episode-list__search + .episode-list__wrapper, .legacy.medium-player.header-hidden .episode-list__search + .episode-list__wrapper
+    .legacy.medium-player.no-header .episode-list__search + .episode-list__wrapper,
+    .legacy.medium-player.header-hidden .episode-list__search + .episode-list__wrapper
     {
         height: 483px;
         min-height: 483px;
         max-height: 483px;
     }
-    .legacy.medium-player.no-header .pp-podcast__single, .legacy.medium-player.header-hidden .pp-podcast__single
+    .legacy.medium-player.no-header .pp-podcast__single,
+    .legacy.medium-player.header-hidden .pp-podcast__single
     {
         height: 534px;
     }
-    .legacy.medium-player.no-header.single-audio .pp-podcast__single, .legacy.medium-player.no-header.single-episode .pp-podcast__single, .legacy.medium-player.header-hidden.single-audio .pp-podcast__single, .legacy.medium-player.header-hidden.single-episode .pp-podcast__single
+    .legacy.medium-player.no-header.single-audio .pp-podcast__single,
+    .legacy.medium-player.no-header.single-episode .pp-podcast__single,
+    .legacy.medium-player.header-hidden.single-audio .pp-podcast__single,
+    .legacy.medium-player.header-hidden.single-episode .pp-podcast__single
     {
         height: auto;
     }
     .modern.wide-player:not(.single-episode) .ppjs__skip-prev-button,
-	.modern.wide-player:not(.single-episode) .ppjs__skip-next-button
+    .modern.wide-player:not(.single-episode) .ppjs__skip-next-button
     {
         display: inline-block !important;
     }
@@ -4008,7 +4239,8 @@ a.ppjs__episode-excerpt .ppjs__more
     {
         left: auto;
 
-        transform: none;
+        -webkit-transform: none;
+                transform: none;
     }
     .wide-player .pod-info .pod-items__navi-menu a.subscribe-item .sub-text
     {
@@ -4071,12 +4303,12 @@ a.ppjs__episode-excerpt .ppjs__more
         align-self: end;
     }
     .wide-player .ppjs__audio-controls .ppjs__secondary-controls .ppjs__control_btns,
-	.pp-modal-window .ppjs__audio-controls .ppjs__secondary-controls .ppjs__control_btns
+    .pp-modal-window .ppjs__audio-controls .ppjs__secondary-controls .ppjs__control_btns
     {
         margin: 10px 0 0;
     }
     .wider-player .ppjs__audio .ppjs__button,
-	.pp-modal-window .ppjs__audio .ppjs__button
+    .pp-modal-window .ppjs__audio .ppjs__button
     {
         margin: 0 10px;
     }
@@ -4084,8 +4316,9 @@ a.ppjs__episode-excerpt .ppjs__more
     {
         margin: 0 5px;
     }
-    .wider-player .ppjs__audio .ppjs__button > button, .wider-player
-	.ppjs__audio .ppjs__button > a.button
+    .wider-player .ppjs__audio .ppjs__button > button,
+    .wider-player
+    .ppjs__audio .ppjs__button > a.button
     {
         width: 46px;
         height: 46px;
@@ -4095,8 +4328,8 @@ a.ppjs__episode-excerpt .ppjs__more
 @media only screen and (min-width: 1024px)
 {
     .pp-podcast.light-color.playerview[id^=pp-podcast-] .ppjs__head-container .head-wrapper,
-	.pp-podcast.light-text.postview[id^=pp-podcast-] .ppjs__head-container .head-wrapper,
-	.inline-view.light-color .ppjs__head-container .head-wrapper
+    .pp-podcast.light-text.postview[id^=pp-podcast-] .ppjs__head-container .head-wrapper,
+    .inline-view.light-color .ppjs__head-container .head-wrapper
     {
         border-color: rgba(255, 255, 255, .1);
     }
