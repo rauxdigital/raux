@@ -178,9 +178,11 @@ https://stream.live.vc.bbcmedia.co.uk/bbc_world_service
 #EXTINF:-1 tvg-logo="https://i.ibb.co/ByVyVrc/voa-logo-1.png" group-title="International Radio" radio="true",VOA Radio
 https://voa-28.akacast.akamaistream.net/7/54/322040/v1/ibb.akacast.akamaistream.net/voa-28
 #EXTINF:-1 tvg-logo="https://i.ibb.co/M2Q1gCR/5f3b43f0529439aac0159456.png" group-title="International Radio" radio="true",Fox News Radio
-https://streaming-ent.shoutcast.com/foxnews
+https://live.wostreaming.net/direct/foxnewsradio-foxnewsradioaac-imc
 #EXTINF:-1 tvg-logo="https://i.ibb.co/GxnNTNc/4732.png" group-title="International Radio" radio="true",Fox Sports Radio
 http://stream.revma.ihrhls.com/zc4732
+#EXTINF:-1 tvg-logo="https://cdn-radiotime-logos.tunein.com/s25876g.png group-title="International Radio" radio="true",ESPN Radio
+http://live.wostreaming.net/direct/espn-network-48
 #EXTINF:-1 tvg-logo="https://i.iheart.com/v3/re/new_assets/5e824556663344f10dab115b" group-title="International Radio" radio="true",Hit Nation
 http://stream.revma.ihrhls.com/zc4422
 #EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/New_WOR_Radio_logo_December_2013.jpg/200px-New_WOR_Radio_logo_December_2013.jpg" group-title="International Radio" radio="true",WOR New York
