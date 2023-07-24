@@ -474,12 +474,35 @@ audio.pp-podcast-episode
 
 .pod-header__image
 {
+    position: relative;
+
+    width: 100%;
     margin-bottom: 20px;
 }
 
 .narrow-player .pod-header__image + .pod-header__items
 {
     margin-top: 0;
+}
+
+.pod-header__image .pod-header__image-wrapper
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    overflow: hidden;
+}
+
+.pod-header__image .pod-header__image-wrapper img
+{
+    width: 100%;
+    height: 100%;
+
+    -o-object-fit: cover;
+       object-fit: cover;
 }
 
 .narrow-player .pod-header__items
@@ -2346,6 +2369,8 @@ input.pp-copylink
 
 .ppjs__img-wrapper
 {
+    position: relative;
+
     width: 100%;
     margin-bottom: 20px;
 }
@@ -2358,6 +2383,26 @@ input.pp-copylink
 .ppjs__img-wrapper.noimg
 {
     display: none !important;
+}
+
+.ppjs__img-wrapper .ppjs__img-btn-cover
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    overflow: hidden;
+}
+
+.ppjs__img-wrapper .ppjs__img-btn-cover img
+{
+    width: 100%;
+    height: 100%;
+
+    -o-object-fit: cover;
+       object-fit: cover;
 }
 
 .ppjs__head-container,
@@ -3567,17 +3612,7 @@ a.ppjs__episode-excerpt .ppjs__more
     .pp-modal-window .ppjs__img-wrapper
     {
         width: 100px;
-        height: 100px;
         margin: 0 20px 0 0;
-    }
-    .wide-player .ppjs__img-wrapper img,
-    .pp-modal-window .ppjs__img-wrapper img
-    {
-        width: 100%;
-        height: 100%;
-
-        -o-object-fit: cover;
-           object-fit: cover;
     }
     .ppjs__head-container,
     .ppjs__secondary-controls
@@ -3775,11 +3810,6 @@ a.ppjs__episode-excerpt .ppjs__more
     .modern.wide-player.single-audio .ppjs__episode-title
     {
         font-size: 20px;
-    }
-    .modern.wide-player.single-episode .ppjs__img-wrapper,
-    .modern.wide-player.single-audio .ppjs__img-wrapper
-    {
-        height: 150px;
     }
     .modern.wide-player.single-episode .pp-podcast__single,
     .modern.wide-player.single-audio .pp-podcast__single
@@ -4177,10 +4207,6 @@ a.ppjs__episode-excerpt .ppjs__more
     .modern.wide-player:not(.single-episode) .ppjs__skip-next-button
     {
         display: inline-block !important;
-    }
-    .modern.wide-player .ppjs__img-wrapper
-    {
-        width: auto;
     }
     .modern.wide-player .pod-launch .podcast-menu
     {

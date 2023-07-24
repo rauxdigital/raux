@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: "erplayer-icons";
-  src:url("https://raudioasia.github.io/raudioapp/wp-content/plugins/erplayer/inc/frontend/assets/font/erplayer-icons/fonts/erplayer-icons.eot");
-  src:url("https://raudioasia.github.io/raudioapp/wp-content/plugins/erplayer/inc/frontend/assets/font/erplayer-icons/fonts/erplayer-icons.eot#iefix") format("embedded-opentype"),
-    url("https://raudioasia.github.io/raudioapp/wp-content/plugins/erplayer/inc/frontend/assets/font/erplayer-icons/fonts/erplayer-icons.woff") format("woff"),
-    url("https://raudioasia.github.io/raudioapp/wp-content/plugins/erplayer/inc/frontend/assets/font/erplayer-icons/fonts/erplayer-icons.ttf") format("truetype"),
-    url("https://raudioasia.github.io/raudioapp/wp-content/plugins/erplayer/inc/frontend/assets/font/erplayer-icons/fonts/erplayer-icons.svg#erplayer-icons") format("svg");
+  src:url("https://raunetwork.github.io/raudioapp/wp-content/plugins/erplayer/inc/frontend/assets/font/erplayer-icons/fonts/erplayer-icons.eot");
+  src:url("https://raunetwork.github.io/raudioapp/wp-content/plugins/erplayer/inc/frontend/assets/font/erplayer-icons/fonts/erplayer-icons.eot#iefix") format("embedded-opentype"),
+    url("https://raunetwork.github.io/raudioapp/wp-content/plugins/erplayer/inc/frontend/assets/font/erplayer-icons/fonts/erplayer-icons.woff") format("woff"),
+    url("https://raunetwork.github.io/raudioapp/wp-content/plugins/erplayer/inc/frontend/assets/font/erplayer-icons/fonts/erplayer-icons.ttf") format("truetype"),
+    url("https://raunetwork.github.io/raudioapp/wp-content/plugins/erplayer/inc/frontend/assets/font/erplayer-icons/fonts/erplayer-icons.svg#erplayer-icons") format("svg");
   font-weight: normal;
   font-style: normal;
 

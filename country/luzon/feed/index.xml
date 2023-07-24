@@ -9,10 +9,10 @@
 
 <channel>
 	<title>Luzon &#8211; RAU</title>
-	<atom:link href="https://raudioasia.github.io/raudioapp/country/luzon/feed/" rel="self" type="application/rss+xml" />
-	<link>https://raudioasia.github.io/raudioapp</link>
+	<atom:link href="https://raunetwork.github.io/raudioapp/country/luzon/feed/" rel="self" type="application/rss+xml" />
+	<link>https://raunetwork.github.io/raudioapp</link>
 	<description>The Best of Live Radio, Music, News, Sports, and Podcasts</description>
-	<lastBuildDate>Wed, 05 Jul 2023 15:59:18 +0000</lastBuildDate>
+	<lastBuildDate>Sun, 23 Jul 2023 16:04:18 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -21,9 +21,9 @@
 	<generator>https://wordpress.org/?v=6.0.3</generator>
 
 <image>
-	<url>https://raudioasia.github.io/raudioapp/wp-content/uploads/nou-raudio-icon-i.png</url>
+	<url>https://raunetwork.github.io/raudioapp/wp-content/uploads/nou-raudio-icon-i.png</url>
 	<title>Luzon &#8211; RAU</title>
-	<link>https://raudioasia.github.io/raudioapp</link>
+	<link>https://raunetwork.github.io/raudioapp</link>
 	<width>32</width>
 	<height>32</height>
 </image> 
@@ -35,7 +35,7 @@
 		<pubDate></pubDate>
 				<guid isPermaLink="false"></guid>
 
-					<description><![CDATA[Search stations Select country Philippines Select genre 2000s80s90sAdult ContemporaryCebuanoCebuano HitsClassic HitsContemporary MOREasy ListeningFilipinoHot ACInternationalIslamiciSportsLive RadioMusicNewsNOU NewsOPMPopRAU OriginalsSportsTalkTop 40 Search No stations found Show : Items per page 5 10 15 20 30 50 Sort : A -Z Z -A Newest Oldest]]></description>
+					<description><![CDATA[Search stations Select country Philippines Select genre 2000s80s90sAdult ContemporaryAlternativeCebuanoCebuano HitsClassic HitsContemporary MORDanceEasy ListeningEDMFilipinoHip HopHitsHot ACInternationalIslamiciSportsLive RadioMusicNewsNOU NewsOldiesOPMPopR&#38;BRAU OriginalsRockSportsTalkTop 40 Search No stations found Show : Items per page 5 10 15 20 30 50 Sort : A -Z Z -A Newest Oldest]]></description>
 										<content:encoded><![CDATA[<p></p>
 <p><a href="" rel="nofollow">Source</a></p>]]></content:encoded>
 					

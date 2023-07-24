@@ -8,10 +8,10 @@
 <channel>
 	<title>
 	Comments for RAU	</title>
-	<atom:link href="https://raudioasia.github.io/raudioapp/comments/feed/" rel="self" type="application/rss+xml" />
-	<link>https://raudioasia.github.io/raudioapp</link>
+	<atom:link href="https://raunetwork.github.io/raudioapp/comments/feed/" rel="self" type="application/rss+xml" />
+	<link>https://raunetwork.github.io/raudioapp</link>
 	<description>The Best of Live Radio, Music, News, Sports, and Podcasts</description>
-	<lastBuildDate>Wed, 05 Jul 2023 15:59:18 +0000</lastBuildDate>
+	<lastBuildDate>Sun, 23 Jul 2023 16:04:18 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
