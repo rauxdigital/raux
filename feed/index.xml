@@ -9,10 +9,10 @@
 
 <channel>
 	<title>RAU</title>
-	<atom:link href="https://raunetwork.github.io/raudioapp/feed/" rel="self" type="application/rss+xml" />
-	<link>https://raunetwork.github.io/raudioapp</link>
+	<atom:link href="https://raunetwork.github.io/rau/feed/" rel="self" type="application/rss+xml" />
+	<link>https://raunetwork.github.io/rau</link>
 	<description>The Best of Live Radio, Music, News, Sports, and Podcasts</description>
-	<lastBuildDate>Sun, 23 Jul 2023 16:04:18 +0000</lastBuildDate>
+	<lastBuildDate>Thu, 10 Aug 2023 12:32:55 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -21,9 +21,9 @@
 	<generator>https://wordpress.org/?v=6.0.3</generator>
 
 <image>
-	<url>https://raunetwork.github.io/raudioapp/wp-content/uploads/nou-raudio-icon-i.png</url>
+	<url>https://raunetwork.github.io/rau/wp-content/uploads/nou-raudio-icon-i.png</url>
 	<title>RAU</title>
-	<link>https://raunetwork.github.io/raudioapp</link>
+	<link>https://raunetwork.github.io/rau</link>
 	<width>32</width>
 	<height>32</height>
 </image> 

@@ -9,10 +9,10 @@
 
 <channel>
 	<title>RAU Originals &#8211; RAU</title>
-	<atom:link href="https://raunetwork.github.io/raudioapp/genre/originals/feed/" rel="self" type="application/rss+xml" />
-	<link>https://raunetwork.github.io/raudioapp</link>
+	<atom:link href="https://raunetwork.github.io/rau/genre/originals/feed/" rel="self" type="application/rss+xml" />
+	<link>https://raunetwork.github.io/rau</link>
 	<description>The Best of Live Radio, Music, News, Sports, and Podcasts</description>
-	<lastBuildDate>Sun, 23 Jul 2023 16:04:18 +0000</lastBuildDate>
+	<lastBuildDate>Thu, 10 Aug 2023 12:32:55 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -21,9 +21,9 @@
 	<generator>https://wordpress.org/?v=6.0.3</generator>
 
 <image>
-	<url>https://raunetwork.github.io/raudioapp/wp-content/uploads/nou-raudio-icon-i.png</url>
+	<url>https://raunetwork.github.io/rau/wp-content/uploads/nou-raudio-icon-i.png</url>
 	<title>RAU Originals &#8211; RAU</title>
-	<link>https://raunetwork.github.io/raudioapp</link>
+	<link>https://raunetwork.github.io/rau</link>
 	<width>32</width>
 	<height>32</height>
 </image> 
@@ -35,7 +35,7 @@
 		<pubDate></pubDate>
 				<guid isPermaLink="false"></guid>
 
-					<description><![CDATA[Search stations Select country Philippines Select genre 2000s80s90sAdult ContemporaryAlternativeCebuanoCebuano HitsClassic HitsContemporary MORDanceEasy ListeningEDMFilipinoHip HopHitsHot ACInternationalIslamiciSportsLive RadioMusicNewsNOU NewsOldiesOPMPopR&#38;BRAU OriginalsRockSportsTalkTop 40 Search Showing 1 - 17 of 17 stations Show : Items per page 5 10 15 20 30 50 Sort : A -Z Z -A Newest Oldest 2DAY FM Country: National, Philippines Genres : CebuanoCebuano HitsPopRAU... <a href="" class="read-more">[ View Station ]</a>]]></description>
+					<description><![CDATA[Search stations Select country Philippines Select genre 2000s80s90sAdult ContemporaryAlternativeCebuanoCebuano HitsClassic HitsContemporary MORDanceEasy ListeningEDMFilipinoFreemium ChoiceHip HopHitsHot ACInternationalIslamiciSportsLive RadioMusicNewsNOU NewsOldiesOPMPopR&#38;BRAU OriginalsRockSportsTalkTop 40 Search Showing 1 - 17 of 17 stations Show : Items per page 5 10 15 20 30 50 Sort : A -Z Z -A Newest Oldest 2DAY FM Country: National, Philippines Genres : CebuanoCebuano... <a href="" class="read-more">[ View Station ]</a>]]></description>
 										<content:encoded><![CDATA[<p>2DAY FM Country: National, Philippines Genres : CebuanoCebuano HitsPopRAU Originals ALT Country: National, Philippines Genres : AlternativeRAU OriginalsRock Bai FM Country: National, Philippines Genres : Adult ContemporaryCebuanoRAU Originals Club FM Country: National, Philippines Genres : DanceEDMRAU Originals Gold FM Country: National, Philippines Genres : Classic HitsOldiesRAU Originals Hot FM...</p>
 <p><a href="" rel="nofollow">Source</a></p>]]></content:encoded>
 					
