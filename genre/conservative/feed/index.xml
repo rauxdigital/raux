@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Conservative &#8211; RAU</title>
+	<atom:link href="https://raunetwork.github.io/rau/genre/conservative/feed/" rel="self" type="application/rss+xml" />
+	<link>https://raunetwork.github.io/rau</link>
+	<description>The Best of Live Radio, Music, News, Sports, and Podcasts</description>
+	<lastBuildDate>Wed, 16 Aug 2023 04:41:58 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.0.3</generator>
+
+<image>
+	<url>https://raunetwork.github.io/rau/wp-content/uploads/nou-raudio-icon-i.png</url>
+	<title>Conservative &#8211; RAU</title>
+	<link>https://raunetwork.github.io/rau</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title></title>
+		<link></link>
+		
+		<dc:creator><![CDATA[]]></dc:creator>
+		<pubDate></pubDate>
+				<guid isPermaLink="false"></guid>
+
+					<description><![CDATA[Search stations Select country InternationalPhilippines Select genre 2000s80s90sAdult ContemporaryAdult HitsAlternativeAsianCebuanoCebuano HitsClassic HitsConservativeContemporary MORDanceEasy ListeningEDMFilipinoFreemium ChoiceHip HopHitsHot ACInternationalIslamiciSportsLive RadioMusicNewsNOU NewsOldiesOPMPopProgressiveRAU OriginalsRnBRockSportsTalkTop 40 Search Showing 1 - 1 of 1 stations Show : Items per page 5 10 15 20 30 50 Sort : A -Z Z -A Newest Oldest RNT Country: International Genres : ConservativeInternationalNewsTalk]]></description>
+										<content:encoded><![CDATA[<p>RNT Country: International Genres : ConservativeInternationalNewsTalk...</p>
+<p><a href="" rel="nofollow">Source</a></p>]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>
