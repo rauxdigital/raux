@@ -9,5 +9,12 @@
     <audio preload="true" id="player" controls crossorigin>
     <source src="https://nouxikast.serv00.net:443/raux/RAUDIO_JUANFM" type="audio/aacp" />
     <script src="https://cdn.plyr.io/1.8.2/plyr.js"></script>
+    <script type="text/javascript">
+      (function () {
+  var audio = document.querySelector('#player');
+  
+  plyr.setup(audio);
+})();
+    </script>
   </body>
 </html>
