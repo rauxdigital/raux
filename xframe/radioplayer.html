@@ -42,6 +42,11 @@
       border-radius: 8px;
     }
     
+    /* Hide the progress/seek bar completely to disable seeking */
+    .plyr__progress__container {
+      display: none !important;
+    }
+
     .station-info {
       display: flex;
       align-items: center;
@@ -148,9 +153,10 @@
   let hlsInstance = null;
   let apiPollInterval = null;
 
+  // Initialized with play, stop, current-time, mute, and volume controls (seek bar removed)
   const player = new Plyr(audioElement, {
     controls: ['play', 'stop', 'current-time', 'mute', 'volume'],
-    tooltips: { controls: true, seek: false }
+    tooltips: { controls: true }
   });
 
   async function loadPlaylist() {
@@ -219,7 +225,6 @@
     return 'audio/mp3';
   }
 
-  // Parses stream metadata into distinct Song Title & Artist UI elements
   function updateMetadataDisplay(rawString) {
     if (!rawString) {
       songTitleEl.textContent = 'Live Broadcast';
@@ -237,7 +242,6 @@
     }
   }
 
-  // Fetch track metadata via API (Radio Browser API lookup by stream URL)
   async function fetchMetadataFromApi(streamUrl) {
     try {
       const apiUrl = `https://de1.api.radio-browser.info/json/stations/byurl?url=${encodeURIComponent(streamUrl)}`;
@@ -246,7 +250,6 @@
       if (response.ok) {
         const data = await response.json();
         if (data && data.length > 0) {
-          // If the station provides live track information
           const stationInfo = data[0];
           const currentTrack = stationInfo.lastcheckoktime ? stationInfo.song : null;
           
@@ -287,7 +290,7 @@
     // Line 1: Station Name
     stationNameEl.textContent = station.title;
     
-    // Default initial text before API fetch completes
+    // Default text before API fetch completes
     songTitleEl.textContent = 'Fetching Track Info...';
     artistNameEl.textContent = 'Live Broadcast';
     
