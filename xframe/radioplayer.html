@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plyr Web Radio (In-Stream ICY & HLS Metadata)</title>
+  <title>Plyr Web Radio (API Metadata)</title>
 
   <!-- Plyr CSS CDN -->
   <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
@@ -65,7 +65,7 @@
       width: 100%;
     }
 
-    /* Station Name */
+    /* Line 1: Station Name */
     .station-name {
       font-size: 0.8rem;
       text-transform: uppercase;
@@ -76,7 +76,7 @@
       text-overflow: ellipsis;
     }
 
-    /* Song Title */
+    /* Line 2: Song Title */
     .song-title {
       font-size: 1.05rem;
       font-weight: bold;
@@ -87,7 +87,7 @@
       text-overflow: ellipsis;
     }
 
-    /* Artist Name */
+    /* Line 3: Artist Name */
     .artist-name {
       font-size: 0.85rem;
       color: #00f2fe;
@@ -107,7 +107,7 @@
 <body>
 
 <div class="player-card">
-  <!-- Station Banner -->
+  <!-- Station & Track Metadata Display -->
   <div class="station-info">
     <img id="stationLogo" class="station-logo" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='65' height='65' viewBox='0 0 24 24' fill='%23666'><path d='M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z'/></svg>" alt="Station Logo" />
     <div class="station-details">
@@ -146,7 +146,7 @@
   
   let stationsList = [];
   let hlsInstance = null;
-  let icyAbortController = null;
+  let apiPollInterval = null;
 
   const player = new Plyr(audioElement, {
     controls: ['play', 'progress', 'current-time', 'mute', 'volume'],
@@ -219,15 +219,14 @@
     return 'audio/mp3';
   }
 
-  // Parses stream title strings into distinct Song Title & Artist UI elements
-  function updateMetadata(rawString) {
+  // Parses stream metadata into distinct Song Title & Artist UI elements
+  function updateMetadataDisplay(rawString) {
     if (!rawString) {
-      songTitleEl.textContent = 'Live Stream';
+      songTitleEl.textContent = 'Live Broadcast';
       artistNameEl.textContent = 'Unknown Artist';
       return;
     }
 
-    // Standard stream format: "Artist - Song Title"
     if (rawString.includes(' - ')) {
       const parts = rawString.split(' - ');
       artistNameEl.textContent = parts[0].trim();
@@ -238,57 +237,27 @@
     }
   }
 
-  // Pure Client-side In-Stream ICY Metadata Reader for MP3/AAC
-  async function readIcyMetadataStream(streamUrl) {
-    if (icyAbortController) icyAbortController.abort();
-    icyAbortController = new AbortController();
-
+  // Fetch track metadata via API (Radio Browser API lookup by stream URL)
+  async function fetchMetadataFromApi(streamUrl) {
     try {
-      const response = await fetch(streamUrl, {
-        headers: { 'Icy-MetaData': '1' },
-        signal: icyAbortController.signal
-      });
-
-      const metaInt = parseInt(response.headers.get('icy-metaint'));
-      if (!metaInt) return; // Stream does not send inline ICY frames
-
-      const reader = response.body.getReader();
-      let byteBuffer = new Uint8Array(0);
-      let bytesUntilMeta = metaInt;
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-
-        // Append incoming stream chunk
-        const temp = new Uint8Array(byteBuffer.length + value.length);
-        temp.set(byteBuffer, 0);
-        temp.set(value, byteBuffer.length);
-        byteBuffer = temp;
-
-        while (byteBuffer.length >= bytesUntilMeta + 1) {
-          // Meta length byte multiplied by 16 gives metadata byte size
-          const metaLen = byteBuffer[bytesUntilMeta] * 16;
+      const apiUrl = `https://de1.api.radio-browser.info/json/stations/byurl?url=${encodeURIComponent(streamUrl)}`;
+      const response = await fetch(apiUrl);
+      
+      if (response.ok) {
+        const data = await response.json();
+        if (data && data.length > 0) {
+          // If the station provides live track information
+          const stationInfo = data[0];
+          const currentTrack = stationInfo.lastcheckoktime ? stationInfo.song : null;
           
-          if (byteBuffer.length >= bytesUntilMeta + 1 + metaLen) {
-            if (metaLen > 0) {
-              const metaBytes = byteBuffer.slice(bytesUntilMeta + 1, bytesUntilMeta + 1 + metaLen);
-              const metaString = new TextDecoder('utf-8').decode(metaBytes);
-              const match = metaString.match(/StreamTitle='([^']*)';/);
-              if (match && match[1]) {
-                updateMetadata(match[1]);
-              }
-            }
-            // Remove processed chunk from buffer
-            byteBuffer = byteBuffer.slice(bytesUntilMeta + 1 + metaLen);
-            bytesUntilMeta = metaInt;
-          } else {
-            break; // Wait for more data
+          if (currentTrack) {
+            updateMetadataDisplay(currentTrack);
+            return;
           }
         }
       }
     } catch (err) {
-      if (err.name !== 'AbortError') console.log('ICY parsing stopped or unavailable.');
+      console.log('API metadata lookup unavailable.');
     }
   }
 
@@ -299,9 +268,9 @@
       hlsInstance.destroy();
       hlsInstance = null;
     }
-    if (icyAbortController) {
-      icyAbortController.abort();
-      icyAbortController = null;
+    if (apiPollInterval) {
+      clearInterval(apiPollInterval);
+      apiPollInterval = null;
     }
 
     if (selectedIndex === '') {
@@ -315,12 +284,12 @@
 
     const station = stationsList[selectedIndex];
     
-    // Line 1: Station Name (from M3U file)
+    // Line 1: Station Name
     stationNameEl.textContent = station.title;
     
-    // Default initial values
-    songTitleEl.textContent = 'Connecting...';
-    artistNameEl.textContent = 'Live Stream';
+    // Default initial text before API fetch completes
+    songTitleEl.textContent = 'Fetching Track Info...';
+    artistNameEl.textContent = 'Live Broadcast';
     
     logoEl.src = station.logo || fallbackLogo;
     logoEl.onerror = () => { logoEl.src = fallbackLogo; };
@@ -328,21 +297,16 @@
     const streamUrl = station.url;
     const mimeType = getMimeType(streamUrl);
 
+    // Initial API Metadata Fetch and set 10-second polling interval
+    fetchMetadataFromApi(streamUrl);
+    apiPollInterval = setInterval(() => fetchMetadataFromApi(streamUrl), 10000);
+
     // Play Stream via HLS.js or Native Plyr
     if (mimeType === 'application/x-mpegURL') {
       if (Hls.isSupported()) {
         hlsInstance = new Hls();
         hlsInstance.loadSource(streamUrl);
         hlsInstance.attachMedia(audioElement);
-        
-        // Listen for ID3/HLS embedded metadata tags
-        hlsInstance.on(Hls.Events.FRAG_PARSING_METADATA, (event, data) => {
-          if (data.samples && data.samples.length > 0) {
-            const rawData = String.fromCharCode.apply(null, data.samples[0].data);
-            updateMetadata(rawData);
-          }
-        });
-
         hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => player.play());
       } else if (audioElement.canPlayType('application/vnd.apple.mpegurl')) {
         player.source = { type: 'audio', sources: [{ src: streamUrl, type: 'application/x-mpegURL' }] };
@@ -351,9 +315,6 @@
     } else {
       player.source = { type: 'audio', sources: [{ src: streamUrl, type: mimeType }] };
       player.play();
-
-      // Read embedded ICY bytes directly from stream
-      readIcyMetadataStream(streamUrl);
     }
   });
 
