@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plyr.io Radio Player</title>
+    <!-- Plyr CSS -->
+    <link rel="stylesheet" href="https://plyr.io" />
+    <style>
+        body {
+            background-color: #121212;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .player-card {
+            background: #1e1e1e;
+            border: 1px solid #2d2d2d;
+            border-radius: 16px;
+            padding: 24px;
+            width: 340px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+            color: #ffffff;
+        }
+        .station-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0 0 12px 0;
+            color: #ffffff;
+        }
+        .meta-box {
+            min-height: 48px;
+            margin-bottom: 20px;
+        }
+        .song-title {
+            font-size: 1rem;
+            color: #00bfff; /* Custom neon accent matching Plyr */
+            font-weight: 600;
+        }
+        .artist-name {
+            font-size: 0.85rem;
+            color: #aaaaaa;
+            margin-top: 4px;
+        }
+        /* Custom styling override to hide progress track for live radio */
+        .plyr--audio .plyr__progress__container {
+            display: none !important;
+        }
+        .plyr--audio {
+            background: #2a2a2a !important;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="player-card">
+    <div id="station-name" class="station-title">Loading Station...</div>
+    <div class="meta-box">
+        <div id="title" class="song-title">Connecting...</div>
+        <div id="artist" class="artist-name"></div>
+    </div>
+    
+    <!-- Plyr HTML audio markup -->
+    <audio id="player" crossorigin playsinline>
+        <source src="https://rauxnetcdn.nou-ikast.workers.dev/RAUX_JUANFM" type="audio/aacp">
+    </audio>
+</div>
+
+<!-- Plyr JavaScript Library -->
+<script src="https://plyr.io"></script>
+
+<script>
+    // Configuration
+    const STATION_UUID = "96210f84-0610-11e8-a15d-52543be8e45b"; 
+    const API_BASE = "https://radio-browser.info";
+
+    const stationNameEl = document.getElementById('station-name');
+    const titleEl = document.getElementById('title');
+    const artistEl = document.getElementById('artist');
+    const audioElement = document.getElementById('player');
+    
+    let plyrPlayer;
+
+    // Initialize the Plyr engine with specialized controls optimized for live streaming
+    function setupPlyr() {
+        plyrPlayer = new Plyr('#player', {
+            controls: ['play', 'mute', 'volume', 'settings'], // Excluded progress, current-time, and duration
+            settings: ['quality', 'speed'],
+            tooltips: { controls: true, seek: false }
+        });
+    }
+
+    async function startRadio() {
+        setupPlyr();
+        
+        try {
+            // 1. Retrieve stream coordinates from Radio-Browser API
+            const response = await fetch(`${API_BASE}/stations/byuuid/${STATION_UUID}`);
+            const data = await response.json();
+            
+            if (data && data.length > 0) {
+                const station = data[0];
+                stationNameEl.textContent = station.name;
+                
+                // Inject the live source URL cleanly into the Plyr pipeline
+                const streamUrl = station.url_resolved || station.url;
+                plyrPlayer.source = {
+                    type: 'audio',
+                    sources: [{ src: streamUrl, type: 'audio/mpeg' }]
+                };
+                
+                // 2. Begin metadata parsing loop
+                updateLiveMetadata();
+                setInterval(updateLiveMetadata, 15000);
+            } else {
+                stationNameEl.textContent = "Station Offline";
+            }
+        } catch (err) {
+            console.error("Initialization error:", err);
+            stationNameEl.textContent = "Connection Error";
+        }
+    }
+
+    async function updateLiveMetadata() {
+        try {
+            const response = await fetch(`${API_BASE}/stations/byuuid/${STATION_UUID}`);
+            const data = await response.json();
+            
+            if (data && data.length > 0) {
+                const station = data[0];
+                const track = station.songtitle || "";
+                const artist = station.songartist || "";
+
+                if (track || artist) {
+                    titleEl.textContent = track || "Unknown Live Track";
+                    artistEl.textContent = artist || "Unknown Artist";
+                } else {
+                    titleEl.textContent = "Live Broadcast";
+                    artistEl.textContent = station.tags ? station.tags.split(',').slice(0, 3).join(', ') : "";
+                }
+            }
+        } catch (err) {
+            console.warn("Failed syncing metadata segment:", err);
+        }
+    }
+
+    // Initialize application execution flow
+    startRadio();
+</script>
+
+</body>
+</html>
