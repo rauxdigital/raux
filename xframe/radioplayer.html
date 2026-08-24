@@ -240,7 +240,7 @@
   // Fetch track metadata via API (Radio Browser API lookup by stream URL)
   async function fetchMetadataFromApi(streamUrl) {
     try {
-      const apiUrl = `https://twj.es/free/?url=${encodeURIComponent(streamUrl)}`;
+      const apiUrl = `https://de1.api.radio-browser.info/json/stations/byurl?url=${encodeURIComponent(streamUrl)}`;
       const response = await fetch(apiUrl);
       
       if (response.ok) {
