@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plyr Web Radio (API Metadata)</title>
+  <title>Plyr Web Radio (Top Player & Scrollable List)</title>
 
   <!-- Plyr CSS CDN -->
   <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
@@ -16,37 +16,30 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
     }
+    
     .player-card {
       background: #1e1e1e;
-      padding: 2rem;
+      padding: 1.5rem;
       border-radius: 12px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.5);
       width: 100%;
       max-width: 420px;
-      text-align: center;
-    }
-    select {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 20px;
-      border-radius: 6px;
-      border: 1px solid #333;
-      background: #2a2a2a;
-      color: #fff;
-      font-size: 1rem;
-    }
-    .plyr {
-      border-radius: 8px;
-    }
-    
-    /* Hide the progress/seek bar completely to disable seeking */
-    .plyr__progress__container {
-      display: none !important;
+      display: flex;
+      flex-direction: column;
+      max-height: 85vh; /* Prevents overflow offscreen */
     }
 
+    /* Fixed Top Section */
+    .top-section {
+      flex-shrink: 0;
+    }
+
+    /* Station & Track Metadata Display */
     .station-info {
       display: flex;
       align-items: center;
@@ -54,7 +47,7 @@
       background: #282828;
       padding: 15px;
       border-radius: 8px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       text-align: left;
     }
     .station-logo {
@@ -101,35 +94,114 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
+
+    .plyr {
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
     
+    /* Hide the progress bar to disable seeking */
+    .plyr__progress__container {
+      display: none !important;
+    }
+
+    /* Vertical Scrollable Station List */
+    .station-list-container {
+      flex-grow: 1;
+      overflow-y: auto;
+      background: #282828;
+      border-radius: 8px;
+      border: 1px solid #333;
+      padding: 5px;
+    }
+
+    /* Custom Scrollbar */
+    .station-list-container::-webkit-scrollbar {
+      width: 6px;
+    }
+    .station-list-container::-webkit-scrollbar-thumb {
+      background: #444;
+      border-radius: 4px;
+    }
+    .station-list-container::-webkit-scrollbar-thumb:hover {
+      background: #00f2fe;
+    }
+
+    .station-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      margin-bottom: 2px;
+    }
+
+    .station-item:hover {
+      background: #333;
+    }
+
+    .station-item.active {
+      background: #00f2fe22;
+      border-left: 3px solid #00f2fe;
+    }
+
+    .item-logo {
+      width: 35px;
+      height: 35px;
+      border-radius: 4px;
+      object-fit: cover;
+      background-color: #444;
+      flex-shrink: 0;
+    }
+
+    .item-name {
+      font-size: 0.9rem;
+      color: #ddd;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .station-item.active .item-name {
+      color: #00f2fe;
+      font-weight: bold;
+    }
+
     #status {
-      margin-top: 15px;
+      margin-top: 10px;
       font-size: 0.8rem;
       color: #666;
+      text-align: center;
+      flex-shrink: 0;
     }
   </style>
 </head>
 <body>
 
 <div class="player-card">
-  <!-- Station & Track Metadata Display -->
-  <div class="station-info">
-    <img id="stationLogo" class="station-logo" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='65' height='65' viewBox='0 0 24 24' fill='%23666'><path d='M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z'/></svg>" alt="Station Logo" />
-    <div class="station-details">
-      <div id="stationName" class="station-name">Station Name</div>
-      <div id="songTitle" class="song-title">Select a Station</div>
-      <div id="artistName" class="artist-name">---</div>
+  <!-- Fixed Top Section: Player & Current Metadata -->
+  <div class="top-section">
+    <div class="station-info">
+      <img id="stationLogo" class="station-logo" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='65' height='65' viewBox='0 0 24 24' fill='%23666'><path d='M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z'/></svg>" alt="Station Logo" />
+      <div class="station-details">
+        <div id="stationName" class="station-name">Station Name</div>
+        <div id="songTitle" class="song-title">Select a Station</div>
+        <div id="artistName" class="artist-name">---</div>
+      </div>
     </div>
-  </div>
-  
-  <select id="stationSelect" disabled>
-    <option>Loading stations...</option>
-  </select>
 
-  <!-- Audio Element -->
-  <audio id="player" controls></audio>
-  
-  <div id="status">Loading internal playlist...</div>
+    <!-- Audio Player controls: Play, Stop, Current-Time, Mute, Volume -->
+    <audio id="player" controls></audio>
+  </div>
+
+  <!-- Scrollable Vertical Station List -->
+  <div id="stationList" class="station-list-container">
+    <div style="padding: 15px; text-align: center; color: #888;">Loading stations...</div>
+  </div>
+
+  <div id="status">Loading playlist...</div>
 </div>
 
 <!-- Hls.js & Plyr CDN -->
@@ -140,7 +212,7 @@
   const localM3uPath = 'https://raw.githubusercontent.com/muxdigital/xum/feed/audio/raux.m3u';
   const fallbackLogo = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='65' height='65' viewBox='0 0 24 24' fill='%23666'><path d='M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z'/></svg>";
 
-  const selectEl = document.getElementById('stationSelect');
+  const listContainer = document.getElementById('stationList');
   const audioElement = document.getElementById('player');
   const statusEl = document.getElementById('status');
   
@@ -152,8 +224,9 @@
   let stationsList = [];
   let hlsInstance = null;
   let apiPollInterval = null;
+  let activeIndex = null;
 
-  // Initialized with play, stop, current-time, mute, and volume controls (seek bar removed)
+  // Initialize Plyr without seek/progress bar and with a Stop button
   const player = new Plyr(audioElement, {
     controls: ['play', 'stop', 'current-time', 'mute', 'volume'],
     tooltips: { controls: true }
@@ -166,9 +239,10 @@
       const text = await response.text();
       
       stationsList = parseM3U(text);
-      populateSelect(stationsList);
+      renderStationList(stationsList);
     } catch (err) {
       statusEl.textContent = 'Error: Make sure playlist.m3u exists in the same folder.';
+      listContainer.innerHTML = `<div style="padding: 15px; text-align: center; color: #e74c3c;">Failed to load playlist.m3u</div>`;
       console.error(err);
     }
   }
@@ -200,21 +274,35 @@
     return stations;
   }
 
-  function populateSelect(stations) {
+  function renderStationList(stations) {
     if (stations.length === 0) {
-      statusEl.textContent = 'No stations found in local playlist.';
+      listContainer.innerHTML = '<div style="padding: 15px; text-align: center; color: #888;">No stations found.</div>';
+      statusEl.textContent = 'No stations found in playlist.';
       return;
     }
 
-    selectEl.innerHTML = '<option value="">-- Select a Station --</option>';
+    listContainer.innerHTML = '';
     stations.forEach((station, index) => {
-      const option = document.createElement('option');
-      option.value = index;
-      option.textContent = station.title;
-      selectEl.appendChild(option);
+      const item = document.createElement('div');
+      item.className = 'station-item';
+      item.dataset.index = index;
+
+      const img = document.createElement('img');
+      img.className = 'item-logo';
+      img.src = station.logo || fallbackLogo;
+      img.onerror = () => { img.src = fallbackLogo; };
+
+      const name = document.createElement('div');
+      name.className = 'item-name';
+      name.textContent = station.title;
+
+      item.appendChild(img);
+      item.appendChild(name);
+
+      item.addEventListener('click', () => playStation(index));
+      listContainer.appendChild(item);
     });
 
-    selectEl.disabled = false;
     statusEl.textContent = `Loaded ${stations.length} stations.`;
   }
 
@@ -264,9 +352,7 @@
     }
   }
 
-  selectEl.addEventListener('change', (e) => {
-    const selectedIndex = e.target.value;
-
+  function playStation(index) {
     if (hlsInstance) {
       hlsInstance.destroy();
       hlsInstance = null;
@@ -276,7 +362,11 @@
       apiPollInterval = null;
     }
 
-    if (selectedIndex === '') {
+    // Highlight active list item
+    const items = listContainer.querySelectorAll('.station-item');
+    items.forEach(el => el.classList.remove('active'));
+    
+    if (index === null || index === undefined) {
       player.stop();
       stationNameEl.textContent = 'Station Name';
       songTitleEl.textContent = 'Select a Station';
@@ -285,12 +375,15 @@
       return;
     }
 
-    const station = stationsList[selectedIndex];
+    activeIndex = index;
+    items[index]?.classList.add('active');
+
+    const station = stationsList[index];
     
     // Line 1: Station Name
     stationNameEl.textContent = station.title;
     
-    // Default text before API fetch completes
+    // Initial defaults while waiting for API responses
     songTitleEl.textContent = 'Fetching Track Info...';
     artistNameEl.textContent = 'Live Broadcast';
     
@@ -300,7 +393,7 @@
     const streamUrl = station.url;
     const mimeType = getMimeType(streamUrl);
 
-    // Initial API Metadata Fetch and set 10-second polling interval
+    // Poll metadata API
     fetchMetadataFromApi(streamUrl);
     apiPollInterval = setInterval(() => fetchMetadataFromApi(streamUrl), 10000);
 
@@ -319,7 +412,7 @@
       player.source = { type: 'audio', sources: [{ src: streamUrl, type: mimeType }] };
       player.play();
     }
-  });
+  }
 
   loadPlaylist();
 </script>
