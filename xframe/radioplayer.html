@@ -424,8 +424,8 @@
     currentStationLogo = station.logo || fallbackLogo;
     
     stationNameEl.textContent = station.title;
-    songTitleEl.textContent = 'Fetching Track Info...';
-    artistNameEl.textContent = 'Live Broadcast';
+    songTitleEl.textContent = 'Now Playing...';
+    artistNameEl.textContent = 'Listen Live';
     
     logoEl.src = currentStationLogo;
     logoEl.onerror = () => { logoEl.src = fallbackLogo; };
