@@ -374,9 +374,12 @@
       if (response.ok) {
         const data = await response.json();
         
-        // Update Song Title
+        // Update Song Title (replaces "Carregando..." with "Now Playing...")
         if (data.song) {
-          songTitleEl.textContent = data.song;
+          const formattedSong = data.song.includes('Carregando...') 
+            ? data.song.replace(/Carregando\.\.\./g, 'Now Playing...') 
+            : data.song;
+          songTitleEl.textContent = formattedSong;
         }
 
         // Update Artist Name
