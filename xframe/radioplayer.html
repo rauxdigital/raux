@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plyr Web Radio (Mobile Responsive)</title>
+  <title>Plyr Web Radio (Custom API Metadata)</title>
 
   <!-- Plyr CSS CDN -->
   <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
@@ -38,12 +38,12 @@
       max-height: 680px;
     }
 
-    /* Fixed Top Player Section */
+    /* Fixed Top Section */
     .top-section {
       flex-shrink: 0;
     }
 
-    /* Station & Track Metadata Display */
+    /* Track Metadata & Art Display */
     .station-info {
       display: flex;
       align-items: center;
@@ -119,7 +119,7 @@
       border-radius: 8px;
       border: 1px solid #333;
       padding: 5px;
-      -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+      -webkit-overflow-scrolling: touch;
     }
 
     /* Custom Scrollbar */
@@ -150,7 +150,7 @@
     }
 
     .station-item:active {
-      background: #3a3a3a; /* Touch feedback for mobile */
+      background: #3a3a3a;
     }
 
     .station-item.active {
@@ -188,7 +188,7 @@
       flex-shrink: 0;
     }
 
-    /* Mobile Responsiveness Adjustments */
+    /* Mobile Responsiveness */
     @media (max-width: 480px) {
       body {
         padding: 0;
@@ -216,7 +216,7 @@
       }
 
       .station-item {
-        padding: 12px 8px; /* Larger tap targets */
+        padding: 12px 8px;
       }
       
       .item-logo {
@@ -233,10 +233,11 @@
 <body>
 
 <div class="player-card">
-  <!-- Fixed Top Section: Player & Metadata -->
+  <!-- Fixed Top Section -->
   <div class="top-section">
     <div class="station-info">
-      <img id="stationLogo" class="station-logo" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='65' height='65' viewBox='0 0 24 24' fill='%23666'><path d='M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z'/></svg>" alt="Station Logo" />
+      <!-- Image displays albumArt when fetched, falls back to station logo -->
+      <img id="stationLogo" class="station-logo" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='65' height='65' viewBox='0 0 24 24' fill='%23666'><path d='M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z'/></svg>" alt="Album Art / Logo" />
       <div class="station-details">
         <div id="stationName" class="station-name">Station Name</div>
         <div id="songTitle" class="song-title">Select a Station</div>
@@ -248,7 +249,7 @@
     <audio id="player" controls></audio>
   </div>
 
-  <!-- Scrollable Vertical Station List -->
+  <!-- Vertical Scrollable Station List -->
   <div id="stationList" class="station-list-container">
     <div style="padding: 15px; text-align: center; color: #888;">Loading stations...</div>
   </div>
@@ -276,8 +277,8 @@
   let stationsList = [];
   let hlsInstance = null;
   let apiPollInterval = null;
+  let currentStationLogo = fallbackLogo;
 
-  // Initialize Plyr with stop button and without seek bar
   const player = new Plyr(audioElement, {
     controls: ['play', 'stop', 'current-time', 'mute', 'volume'],
     tooltips: { controls: true }
@@ -364,42 +365,34 @@
     return 'audio/mp3';
   }
 
-  function updateMetadataDisplay(rawString) {
-    if (!rawString) {
-      songTitleEl.textContent = 'Live Broadcast';
-      artistNameEl.textContent = 'Unknown Artist';
-      return;
-    }
-
-    if (rawString.includes(' - ')) {
-      const parts = rawString.split(' - ');
-      artistNameEl.textContent = parts[0].trim();
-      songTitleEl.textContent = parts.slice(1).join(' - ').trim();
-    } else {
-      songTitleEl.textContent = rawString;
-      artistNameEl.textContent = 'Live Broadcast';
-    }
-  }
-
+  // Fetch track metadata ('song', 'artist', 'albumArt') from custom API endpoint
   async function fetchMetadataFromApi(streamUrl) {
     try {
-      const apiUrl = `https://de1.api.radio-browser.info/json/stations/byurl?url=${encodeURIComponent(streamUrl)}`;
+      const apiUrl = `https://twj.es/?url=${encodeURIComponent(streamUrl)}`;
       const response = await fetch(apiUrl);
       
       if (response.ok) {
         const data = await response.json();
-        if (data && data.length > 0) {
-          const stationInfo = data[0];
-          const currentTrack = stationInfo.lastcheckoktime ? stationInfo.song : null;
-          
-          if (currentTrack) {
-            updateMetadataDisplay(currentTrack);
-            return;
-          }
+        
+        // Update Song Title
+        if (data.song) {
+          songTitleEl.textContent = data.song;
+        }
+
+        // Update Artist Name
+        if (data.artist) {
+          artistNameEl.textContent = data.artist;
+        }
+
+        // Update Album Art (replaces station logo image if provided)
+        if (data.albumArt) {
+          logoEl.src = data.albumArt;
+        } else {
+          logoEl.src = currentStationLogo;
         }
       }
     } catch (err) {
-      console.log('API metadata lookup unavailable.');
+      console.log('API metadata lookup error:', err);
     }
   }
 
@@ -428,17 +421,19 @@
     items[index]?.classList.add('active');
 
     const station = stationsList[index];
+    currentStationLogo = station.logo || fallbackLogo;
     
     stationNameEl.textContent = station.title;
     songTitleEl.textContent = 'Fetching Track Info...';
     artistNameEl.textContent = 'Live Broadcast';
     
-    logoEl.src = station.logo || fallbackLogo;
+    logoEl.src = currentStationLogo;
     logoEl.onerror = () => { logoEl.src = fallbackLogo; };
 
     const streamUrl = station.url;
     const mimeType = getMimeType(streamUrl);
 
+    // Initial API Fetch and set 10-second polling interval
     fetchMetadataFromApi(streamUrl);
     apiPollInterval = setInterval(() => fetchMetadataFromApi(streamUrl), 10000);
 
