@@ -378,7 +378,7 @@
   // Fetch track metadata ('song', 'artist', 'albumArt') from custom API endpoint
   async function fetchMetadataFromApi(streamUrl) {
     try {
-      const apiUrl = `https://twj.es/?url=${encodeURIComponent(streamUrl)}`;
+      const apiUrl = `https://twj.es/free/?url=${encodeURIComponent(streamUrl)}`;
       const response = await fetch(apiUrl);
       
       if (response.ok) {
