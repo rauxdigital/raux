@@ -3,12 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plyr Web Radio (Top Player & Scrollable List)</title>
+  <title>Plyr Web Radio (Mobile Responsive)</title>
 
   <!-- Plyr CSS CDN -->
   <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: #121212;
@@ -18,23 +22,23 @@
       align-items: center;
       min-height: 100vh;
       margin: 0;
-      padding: 20px;
-      box-sizing: border-box;
+      padding: 15px;
     }
     
     .player-card {
       background: #1e1e1e;
-      padding: 1.5rem;
+      padding: 1.25rem;
       border-radius: 12px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.5);
       width: 100%;
-      max-width: 420px;
+      max-width: 480px;
       display: flex;
       flex-direction: column;
-      max-height: 85vh; /* Prevents overflow offscreen */
+      height: 85vh;
+      max-height: 680px;
     }
 
-    /* Fixed Top Section */
+    /* Fixed Top Player Section */
     .top-section {
       flex-shrink: 0;
     }
@@ -43,21 +47,23 @@
     .station-info {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 12px;
       background: #282828;
-      padding: 15px;
+      padding: 12px;
       border-radius: 8px;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       text-align: left;
     }
+
     .station-logo {
-      width: 65px;
-      height: 65px;
+      width: 60px;
+      height: 60px;
       border-radius: 8px;
       object-fit: cover;
       background-color: #333;
       flex-shrink: 0;
     }
+
     .station-details {
       overflow: hidden;
       width: 100%;
@@ -65,7 +71,7 @@
 
     /* Line 1: Station Name */
     .station-name {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       color: #888;
@@ -76,7 +82,7 @@
 
     /* Line 2: Song Title */
     .song-title {
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: bold;
       color: #fff;
       margin-top: 2px;
@@ -97,10 +103,10 @@
 
     .plyr {
       border-radius: 8px;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
     }
     
-    /* Hide the progress bar to disable seeking */
+    /* Disable seeking progress bar */
     .plyr__progress__container {
       display: none !important;
     }
@@ -113,11 +119,12 @@
       border-radius: 8px;
       border: 1px solid #333;
       padding: 5px;
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
     }
 
     /* Custom Scrollbar */
     .station-list-container::-webkit-scrollbar {
-      width: 6px;
+      width: 5px;
     }
     .station-list-container::-webkit-scrollbar-thumb {
       background: #444;
@@ -130,7 +137,7 @@
     .station-item {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       padding: 10px;
       border-radius: 6px;
       cursor: pointer;
@@ -142,14 +149,18 @@
       background: #333;
     }
 
+    .station-item:active {
+      background: #3a3a3a; /* Touch feedback for mobile */
+    }
+
     .station-item.active {
       background: #00f2fe22;
       border-left: 3px solid #00f2fe;
     }
 
     .item-logo {
-      width: 35px;
-      height: 35px;
+      width: 36px;
+      height: 36px;
       border-radius: 4px;
       object-fit: cover;
       background-color: #444;
@@ -157,7 +168,7 @@
     }
 
     .item-name {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: #ddd;
       white-space: nowrap;
       overflow: hidden;
@@ -170,18 +181,59 @@
     }
 
     #status {
-      margin-top: 10px;
-      font-size: 0.8rem;
+      margin-top: 8px;
+      font-size: 0.75rem;
       color: #666;
       text-align: center;
       flex-shrink: 0;
+    }
+
+    /* Mobile Responsiveness Adjustments */
+    @media (max-width: 480px) {
+      body {
+        padding: 0;
+      }
+
+      .player-card {
+        height: 100vh;
+        max-height: 100vh;
+        border-radius: 0;
+        padding: 1rem;
+        box-shadow: none;
+      }
+
+      .station-logo {
+        width: 52px;
+        height: 52px;
+      }
+
+      .song-title {
+        font-size: 0.95rem;
+      }
+
+      .artist-name {
+        font-size: 0.8rem;
+      }
+
+      .station-item {
+        padding: 12px 8px; /* Larger tap targets */
+      }
+      
+      .item-logo {
+        width: 32px;
+        height: 32px;
+      }
+
+      .item-name {
+        font-size: 0.85rem;
+      }
     }
   </style>
 </head>
 <body>
 
 <div class="player-card">
-  <!-- Fixed Top Section: Player & Current Metadata -->
+  <!-- Fixed Top Section: Player & Metadata -->
   <div class="top-section">
     <div class="station-info">
       <img id="stationLogo" class="station-logo" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='65' height='65' viewBox='0 0 24 24' fill='%23666'><path d='M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z'/></svg>" alt="Station Logo" />
@@ -201,7 +253,7 @@
     <div style="padding: 15px; text-align: center; color: #888;">Loading stations...</div>
   </div>
 
-  <div id="status">Loading playlist...</div>
+  <div id="status">Loading internal playlist...</div>
 </div>
 
 <!-- Hls.js & Plyr CDN -->
@@ -224,9 +276,8 @@
   let stationsList = [];
   let hlsInstance = null;
   let apiPollInterval = null;
-  let activeIndex = null;
 
-  // Initialize Plyr without seek/progress bar and with a Stop button
+  // Initialize Plyr with stop button and without seek bar
   const player = new Plyr(audioElement, {
     controls: ['play', 'stop', 'current-time', 'mute', 'volume'],
     tooltips: { controls: true }
@@ -362,7 +413,6 @@
       apiPollInterval = null;
     }
 
-    // Highlight active list item
     const items = listContainer.querySelectorAll('.station-item');
     items.forEach(el => el.classList.remove('active'));
     
@@ -375,17 +425,13 @@
       return;
     }
 
-    activeIndex = index;
     items[index]?.classList.add('active');
 
     const station = stationsList[index];
     
-    // Line 1: Station Name
     stationNameEl.textContent = station.title;
-    
-    // Initial defaults while waiting for API responses
-    songTitleEl.textContent = 'Now Playing...';
-    artistNameEl.textContent = 'Live';
+    songTitleEl.textContent = 'Fetching Track Info...';
+    artistNameEl.textContent = 'Live Broadcast';
     
     logoEl.src = station.logo || fallbackLogo;
     logoEl.onerror = () => { logoEl.src = fallbackLogo; };
@@ -393,11 +439,9 @@
     const streamUrl = station.url;
     const mimeType = getMimeType(streamUrl);
 
-    // Poll metadata API
     fetchMetadataFromApi(streamUrl);
     apiPollInterval = setInterval(() => fetchMetadataFromApi(streamUrl), 10000);
 
-    // Play Stream via HLS.js or Native Plyr
     if (mimeType === 'application/x-mpegURL') {
       if (Hls.isSupported()) {
         hlsInstance = new Hls();
