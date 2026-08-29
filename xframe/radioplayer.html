@@ -15,7 +15,7 @@
         <meta property="og:description" content="Listen to live radio stations from across the Philippines." />
         <link rel="shortcut icon" href="https://raw.githubusercontent.com/muxdigital/xum/feed/img/raux-originals/raux-icon.png" type="image/x-icon" />
 
-  <!-- Plyr CSS CDN -->
+<!-- Plyr CSS CDN -->
   <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
 
   <style>
@@ -264,7 +264,7 @@
     <div style="padding: 15px; text-align: center; color: #888;">Loading stations...</div>
   </div>
 
-  <div id="status">Loading internal playlist...</div>
+  <div id="status">Loading playlist...</div>
 </div>
 
 <!-- Hls.js & Plyr CDN -->
@@ -288,11 +288,40 @@
   let hlsInstance = null;
   let apiPollInterval = null;
   let currentStationLogo = fallbackLogo;
+  
+  // Retry Logic State Variables
+  let currentStationIndex = null;
+  let retryCount = 0;
+  const maxRetries = 10;
+  let retryTimeout = null;
 
   const player = new Plyr(audioElement, {
     controls: ['play', 'stop', 'current-time', 'mute', 'volume'],
     tooltips: { controls: true }
   });
+
+  // Handle stream playback errors
+  audioElement.addEventListener('error', handlePlaybackError);
+
+  function handlePlaybackError() {
+    if (currentStationIndex === null) return;
+
+    if (retryCount < maxRetries) {
+      retryCount++;
+      statusEl.textContent = `Playback error. Retrying (${retryCount}/${maxRetries})...`;
+      
+      // Clear previous timeout if any and attempt to reload after 2 seconds
+      if (retryTimeout) clearTimeout(retryTimeout);
+      retryTimeout = setTimeout(() => {
+        playStation(currentStationIndex, true);
+      }, 2000);
+    } else {
+      statusEl.textContent = `Failed to connect after ${maxRetries} attempts. Stream unreachable.`;
+      songTitleEl.textContent = 'Playback Failed';
+      artistNameEl.textContent = 'Stream unavailable';
+      player.stop();
+    }
+  }
 
   async function loadPlaylist() {
     try {
@@ -378,7 +407,7 @@
   // Fetch track metadata ('song', 'artist', 'albumArt') from custom API endpoint
   async function fetchMetadataFromApi(streamUrl) {
     try {
-      const apiUrl = `https://twj.es/free/?url=${encodeURIComponent(streamUrl)}`;
+      const apiUrl = `https://twj.es/?url=${encodeURIComponent(streamUrl)}`;
       const response = await fetch(apiUrl);
       
       if (response.ok) {
@@ -409,7 +438,12 @@
     }
   }
 
-  function playStation(index) {
+  function playStation(index, isRetry = false) {
+    if (!isRetry) {
+      retryCount = 0;
+      if (retryTimeout) clearTimeout(retryTimeout);
+    }
+
     if (hlsInstance) {
       hlsInstance.destroy();
       hlsInstance = null;
@@ -423,6 +457,7 @@
     items.forEach(el => el.classList.remove('active'));
     
     if (index === null || index === undefined) {
+      currentStationIndex = null;
       player.stop();
       stationNameEl.textContent = 'Station Name';
       songTitleEl.textContent = 'Select a Station';
@@ -431,14 +466,18 @@
       return;
     }
 
+    currentStationIndex = index;
     items[index]?.classList.add('active');
 
     const station = stationsList[index];
     currentStationLogo = station.logo || fallbackLogo;
     
     stationNameEl.textContent = station.title;
-    songTitleEl.textContent = 'Now Playing...';
-    artistNameEl.textContent = 'Listen Live';
+    if (!isRetry) {
+      songTitleEl.textContent = 'Fetching Track Info...';
+      artistNameEl.textContent = 'Live Broadcast';
+      statusEl.textContent = `Connecting to ${station.title}...`;
+    }
     
     logoEl.src = currentStationLogo;
     logoEl.onerror = () => { logoEl.src = fallbackLogo; };
@@ -455,22 +494,25 @@
         hlsInstance = new Hls();
         hlsInstance.loadSource(streamUrl);
         hlsInstance.attachMedia(audioElement);
-        hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => player.play());
+        hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => {
+          player.play().catch(handlePlaybackError);
+        });
+        hlsInstance.on(Hls.Events.ERROR, (event, data) => {
+          if (data.fatal) {
+            handlePlaybackError();
+          }
+        });
       } else if (audioElement.canPlayType('application/vnd.apple.mpegurl')) {
         player.source = { type: 'audio', sources: [{ src: streamUrl, type: 'application/x-mpegURL' }] };
-        player.play();
+        player.play().catch(handlePlaybackError);
       }
     } else {
       player.source = { type: 'audio', sources: [{ src: streamUrl, type: mimeType }] };
-      player.play();
+      player.play().catch(handlePlaybackError);
     }
   }
 
   loadPlaylist();
-</script>
-
-<script>
-document.addEventListener('contextmenu', event => event.preventDefault());
 </script>
 
 </body>
