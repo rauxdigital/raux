@@ -15,7 +15,7 @@
         <meta property="og:description" content="Listen to live radio stations from across the Philippines." />
         <link rel="shortcut icon" href="https://raw.githubusercontent.com/muxdigital/xum/feed/img/raux-originals/raux-icon.png" type="image/x-icon" />
 
-  <!-- Plyr CSS CDN -->
+<!-- Plyr CSS CDN -->
   <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
 
   <style>
@@ -119,6 +119,46 @@
     /* Disable seeking progress bar */
     .plyr__progress__container {
       display: none !important;
+    }
+
+    /* Control Buttons between Player & Playlist */
+    .controls-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .control-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: #282828;
+      color: #fff;
+      border: 1px solid #333;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .control-btn:hover {
+      background: #333;
+      border-color: #00f2fe;
+      color: #00f2fe;
+    }
+
+    .control-btn:active {
+      background: #3a3a3a;
+    }
+
+    .control-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
     }
 
     /* Vertical Scrollable Station List */
@@ -255,8 +295,24 @@
       </div>
     </div>
 
-    <!-- Audio Player controls: Play, Stop, Current-Time, Mute, Volume -->
+    <!-- Audio Player controls: Play, Current-Time, Mute, Volume -->
     <audio id="player" controls></audio>
+
+    <!-- Navigation & Stop Bar between Player and Playlist -->
+    <div class="controls-bar">
+      <button id="prevBtn" class="control-btn" title="Previous Station">
+        <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+        Previous
+      </button>
+      <button id="stopBtn" class="control-btn" title="Stop Playback">
+        <svg viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg>
+        Stop
+      </button>
+      <button id="nextBtn" class="control-btn" title="Next Station">
+        Next
+        <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+      </button>
+    </div>
   </div>
 
   <!-- Vertical Scrollable Station List -->
@@ -283,16 +339,26 @@
   const stationNameEl = document.getElementById('stationName');
   const songTitleEl = document.getElementById('songTitle');
   const artistNameEl = document.getElementById('artistName');
+
+  const prevBtn = document.getElementById('prevBtn');
+  const stopBtn = document.getElementById('stopBtn');
+  const nextBtn = document.getElementById('nextBtn');
   
   let stationsList = [];
   let hlsInstance = null;
   let apiPollInterval = null;
   let currentStationLogo = fallbackLogo;
+  let currentStationIndex = -1;
 
   const player = new Plyr(audioElement, {
-    controls: ['play', 'stop', 'current-time', 'mute', 'volume'],
+    controls: ['play', 'current-time', 'mute', 'volume'],
     tooltips: { controls: true }
   });
+
+  // Attach button event listeners
+  prevBtn.addEventListener('click', playPreviousStation);
+  stopBtn.addEventListener('click', stopPlayback);
+  nextBtn.addEventListener('click', playNextStation);
 
   async function loadPlaylist() {
     try {
@@ -375,16 +441,14 @@
     return 'audio/mp3';
   }
 
-  // Fetch track metadata ('song', 'artist', 'albumArt') from custom API endpoint
   async function fetchMetadataFromApi(streamUrl) {
     try {
-      const apiUrl = `https://twj.es/free/?url=${encodeURIComponent(streamUrl)}`;
+      const apiUrl = `https://twj.es/?url=${encodeURIComponent(streamUrl)}`;
       const response = await fetch(apiUrl);
       
       if (response.ok) {
         const data = await response.json();
         
-        // Update Song Title (replaces "Carregando..." with "Now Playing...")
         if (data.song) {
           const formattedSong = data.song.includes('Carregando...') 
             ? data.song.replace(/Carregando\.\.\./g, 'Now Playing...') 
@@ -392,12 +456,10 @@
           songTitleEl.textContent = formattedSong;
         }
 
-        // Update Artist Name
         if (data.artist) {
           artistNameEl.textContent = data.artist;
         }
 
-        // Update Album Art (replaces station logo image if provided)
         if (data.albumArt) {
           logoEl.src = data.albumArt;
         } else {
@@ -409,11 +471,58 @@
     }
   }
 
-  function playStation(index) {
+  function stopPlayback() {
     if (hlsInstance) {
+      hlsInstance.detachMedia();
       hlsInstance.destroy();
       hlsInstance = null;
     }
+
+    if (apiPollInterval) {
+      clearInterval(apiPollInterval);
+      apiPollInterval = null;
+    }
+
+    player.stop();
+    audioElement.removeAttribute('src');
+    audioElement.load();
+
+    const items = listContainer.querySelectorAll('.station-item');
+    items.forEach(el => el.classList.remove('active'));
+
+    currentStationIndex = -1;
+    stationNameEl.textContent = 'Station Name';
+    songTitleEl.textContent = 'Select a Station';
+    artistNameEl.textContent = '---';
+    logoEl.src = fallbackLogo;
+    statusEl.textContent = 'Playback stopped.';
+  }
+
+  function playPreviousStation() {
+    if (stationsList.length === 0) return;
+    let newIndex = currentStationIndex - 1;
+    if (newIndex < 0) {
+      newIndex = stationsList.length - 1; // Wrap around to end
+    }
+    playStation(newIndex);
+  }
+
+  function playNextStation() {
+    if (stationsList.length === 0) return;
+    let newIndex = currentStationIndex + 1;
+    if (newIndex >= stationsList.length) {
+      newIndex = 0; // Wrap around to top
+    }
+    playStation(newIndex);
+  }
+
+  function playStation(index) {
+    if (hlsInstance) {
+      hlsInstance.detachMedia();
+      hlsInstance.destroy();
+      hlsInstance = null;
+    }
+
     if (apiPollInterval) {
       clearInterval(apiPollInterval);
       apiPollInterval = null;
@@ -422,16 +531,17 @@
     const items = listContainer.querySelectorAll('.station-item');
     items.forEach(el => el.classList.remove('active'));
     
-    if (index === null || index === undefined) {
-      player.stop();
-      stationNameEl.textContent = 'Station Name';
-      songTitleEl.textContent = 'Select a Station';
-      artistNameEl.textContent = '---';
-      logoEl.src = fallbackLogo;
+    if (index === null || index === undefined || index < 0 || index >= stationsList.length) {
+      stopPlayback();
       return;
     }
 
-    items[index]?.classList.add('active');
+    currentStationIndex = index;
+    const currentItem = items[index];
+    if (currentItem) {
+      currentItem.classList.add('active');
+      currentItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
 
     const station = stationsList[index];
     currentStationLogo = station.logo || fallbackLogo;
@@ -439,6 +549,7 @@
     stationNameEl.textContent = station.title;
     songTitleEl.textContent = 'Now Playing...';
     artistNameEl.textContent = 'Listen Live';
+    statusEl.textContent = `Connecting to ${station.title}...`;
     
     logoEl.src = currentStationLogo;
     logoEl.onerror = () => { logoEl.src = fallbackLogo; };
@@ -446,16 +557,20 @@
     const streamUrl = station.url;
     const mimeType = getMimeType(streamUrl);
 
-    // Initial API Fetch and set 10-second polling interval
     fetchMetadataFromApi(streamUrl);
     apiPollInterval = setInterval(() => fetchMetadataFromApi(streamUrl), 10000);
+
+    audioElement.removeAttribute('src');
+    audioElement.load();
 
     if (mimeType === 'application/x-mpegURL') {
       if (Hls.isSupported()) {
         hlsInstance = new Hls();
         hlsInstance.loadSource(streamUrl);
         hlsInstance.attachMedia(audioElement);
-        hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => player.play());
+        hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => {
+          player.play();
+        });
       } else if (audioElement.canPlayType('application/vnd.apple.mpegurl')) {
         player.source = { type: 'audio', sources: [{ src: streamUrl, type: 'application/x-mpegURL' }] };
         player.play();
@@ -467,10 +582,6 @@
   }
 
   loadPlaylist();
-</script>
-
-<script>
-document.addEventListener('contextmenu', event => event.preventDefault());
 </script>
 
 </body>
