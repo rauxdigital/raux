@@ -18,7 +18,7 @@
 <!-- Plyr CSS CDN -->
   <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
 
-  <style>
+<style>
     * {
       box-sizing: border-box;
     }
@@ -65,13 +65,27 @@
       text-align: left;
     }
 
-    .station-logo img {
+    /* Square Container for Main Station Logo / Album Art */
+    .station-logo-container {
       width: 60px;
       height: 60px;
       border-radius: 8px;
-      object-fit: contain;
       background-color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
       flex-shrink: 0;
+    }
+
+    /* Scaled & Centered Image preserving aspect ratio */
+    .station-logo {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
     }
 
     .station-details {
@@ -208,13 +222,26 @@
       border-left: 3px solid #00f2fe;
     }
 
-    .item-logo {
+    /* Square Container for Playlist Item Logos */
+    .item-logo-container {
       width: 36px;
       height: 36px;
       border-radius: 4px;
-      object-fit: cover;
       background-color: #444;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
       flex-shrink: 0;
+    }
+
+    .item-logo {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
     }
 
     .item-name {
@@ -252,7 +279,7 @@
         box-shadow: none;
       }
 
-      .station-logo {
+      .station-logo-container {
         width: 52px;
         height: 52px;
       }
@@ -269,7 +296,7 @@
         padding: 12px 8px;
       }
       
-      .item-logo {
+      .item-logo-container {
         width: 32px;
         height: 32px;
       }
@@ -286,8 +313,10 @@
   <!-- Fixed Top Section -->
   <div class="top-section">
     <div class="station-info">
-      <!-- Image displays albumArt when fetched, falls back to station logo -->
-      <img id="stationLogo" class="station-logo" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='65' height='65' viewBox='0 0 24 24' fill='%23666'><path d='M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z'/></svg>" alt="Album Art / Logo" />
+      <!-- Fixed Square Container with Auto-fitted Content -->
+      <div class="station-logo-container">
+        <img id="stationLogo" class="station-logo" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='65' height='65' viewBox='0 0 24 24' fill='%23666'><path d='M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z'/></svg>" alt="Album Art / Logo" />
+      </div>
       <div class="station-details">
         <div id="stationName" class="station-name">Station Name</div>
         <div id="songTitle" class="song-title">Select a Station</div>
@@ -320,7 +349,7 @@
     <div style="padding: 15px; text-align: center; color: #888;">Loading stations...</div>
   </div>
 
-  <div id="status">Loading playlist...</div>
+  <div id="status">Loading internal playlist...</div>
 </div>
 
 <!-- Hls.js & Plyr CDN -->
@@ -355,7 +384,6 @@
     tooltips: { controls: true }
   });
 
-  // Attach button event listeners
   prevBtn.addEventListener('click', playPreviousStation);
   stopBtn.addEventListener('click', stopPlayback);
   nextBtn.addEventListener('click', playNextStation);
@@ -415,16 +443,21 @@
       item.className = 'station-item';
       item.dataset.index = index;
 
+      const imgWrapper = document.createElement('div');
+      imgWrapper.className = 'item-logo-container';
+
       const img = document.createElement('img');
       img.className = 'item-logo';
       img.src = station.logo || fallbackLogo;
       img.onerror = () => { img.src = fallbackLogo; };
 
+      imgWrapper.appendChild(img);
+
       const name = document.createElement('div');
       name.className = 'item-name';
       name.textContent = station.title;
 
-      item.appendChild(img);
+      item.appendChild(imgWrapper);
       item.appendChild(name);
 
       item.addEventListener('click', () => playStation(index));
@@ -502,7 +535,7 @@
     if (stationsList.length === 0) return;
     let newIndex = currentStationIndex - 1;
     if (newIndex < 0) {
-      newIndex = stationsList.length - 1; // Wrap around to end
+      newIndex = stationsList.length - 1;
     }
     playStation(newIndex);
   }
@@ -511,7 +544,7 @@
     if (stationsList.length === 0) return;
     let newIndex = currentStationIndex + 1;
     if (newIndex >= stationsList.length) {
-      newIndex = 0; // Wrap around to top
+      newIndex = 0;
     }
     playStation(newIndex);
   }
@@ -547,8 +580,8 @@
     currentStationLogo = station.logo || fallbackLogo;
     
     stationNameEl.textContent = station.title;
-    songTitleEl.textContent = 'Now Playing...';
-    artistNameEl.textContent = 'Listen Live';
+    songTitleEl.textContent = 'Fetching Track Info...';
+    artistNameEl.textContent = 'Live Broadcast';
     statusEl.textContent = `Connecting to ${station.title}...`;
     
     logoEl.src = currentStationLogo;
